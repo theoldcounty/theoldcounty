@@ -1,0 +1,41 @@
+<?php
+// $Id: mixedcarousel.module Exp $
+ 
+/**
+ * Implementation of hook_block_info().
+ */
+function mixedcarousel_block_info() {
+  $blocks['my-block-id'] = array(
+    'info' => t('mixedcarousel'),
+  );
+  return $blocks;
+}
+ 
+/**
+ * Implementation of hook_block_view().
+ */
+function mixedcarousel_block_view($delta='') {
+  $block = array();
+  switch ($delta) {
+    case 'my-block-id':
+      $block['subject'] = t('mixedcarousel');
+      $block['content'] = mixedcarousel_contents();
+      break;
+  }
+  return $block;
+}
+ 
+/**
+ * custom html block
+ * @return string
+ */
+function mixedcarousel_contents() {
+
+
+	$html.='<div>';
+	$html.='MIXED CAROUSEL';
+	$html.='</div>';	
+
+  
+  return $html;
+}

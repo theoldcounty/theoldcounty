@@ -1,0 +1,5 @@
+; $Id: example.info,v 1.0.0.0 2011/02/09 10:11:15 MyName Exp $
+name = "Mixed Carousel"
+description = "Mixed Carousel"
+core = "7.x"
+package = "Mixed Carousel"

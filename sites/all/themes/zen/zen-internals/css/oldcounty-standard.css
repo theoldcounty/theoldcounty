@@ -1,0 +1,144 @@
+/*Globals*/
+body #page.standard{
+	max-width: 1041px;
+}
+
+body.standard #header{
+	width: 1041px;
+}
+
+
+body.standard #block-block-3{
+	padding-right:191px;
+}
+
+
+body.standard #header .region-header{
+	right:-160px;
+	width:983px;
+}
+
+
+body.standard #block-block-1,
+body.standard #block-block-2{
+	width: 1041px;
+}
+
+body #page.standard #content{
+	overflow:hidden;
+	/*padding-right: 0;*/
+}
+
+body #page.standard article {
+	width: 497px;
+	float: left;
+	margin-bottom: 20px;
+}
+
+
+
+
+body #page.standard .relatednews,
+body #page.standard .relatedservices{
+	width: 496px;
+	float: right;
+}
+
+body.page-home #page.standard #content{
+	overflow:visible;
+	padding-right:15px;
+}
+
+body.page-home #page.standard .relatednews{
+	width: auto;
+	float: none;
+}
+
+body.section-tags #page.standard .relatednews{
+	display:none;
+}
+
+body.section-tags #page.standard article{
+	margin-right:12px;
+}
+
+body.section-tags #page.standard #content{
+	padding-right:0;
+}
+
+/*Home*/
+
+
+/*Studio*/
+#page.standard .studiocarousel{width:1020px;}
+
+#page.standard .view-studio .views-row{
+	width: 221px;
+}
+
+.node-type-studio #page.standard .wraps .view-studio .views-field-field-feature-image{
+	width: 200px;
+}
+
+/*Work*/
+.node-type-work #page.standard .wraps .view-work .views-field-field-feature-image{
+	width: 200px;
+}
+.node-type-work #page.standard .view-work .views-row{
+	width: 221px;
+}
+
+.vimeo iframe{
+	width:1000px;
+	height:572px;
+}
+
+/*Services*/
+
+
+/*News*/
+
+
+/*Contact Us*/
+.section-contact-us #page.standard .field-type-google-map-field,
+.section-contact-us  #page.standard .google_map_field_display{
+	position:relative;
+	width: 400px;
+	height: 400px;
+}
+body.section-contact-us #page.standard article .field-name-field-google-map{
+	float: left;
+}
+
+body.section-contact-us #page.standard article{
+	width: 100%;
+}
+
+
+body.section-contact-us #page.standard article .field-name-field-google-map .glare{
+	background: gold;
+	opacity: 0.3;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	z-index: 2;
+}
+
+body.section-contact-us #page.standard article .field-name-body{
+	float: right;
+	width: 575px;
+}
+
+
+
+body.section-contact-us #page.standard article .field-name-field-google-map .field-label{
+	display:none;
+}
+
+body.section-contact-us #page.standard article header{
+	display:none;
+}
+
+body.section-contact-us #page.standard article .field-name-field-google-map .field-items .field-item{
+	margin:0;
+}
