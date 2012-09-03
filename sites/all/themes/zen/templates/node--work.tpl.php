@@ -111,8 +111,6 @@ global $base_url;
 			echo "</pre>";
 
 			foreach ($featureImage as $key => $value) {
-
-
 				if(array_key_exists($key, $featureImage)){
 					$imgUrl = $featureImage[$key]['uri'];  // the orig image uri
 					$style = 'project_small';
@@ -130,6 +128,17 @@ global $base_url;
 			}
 		}
 		/*Feature Image*/
+
+		print render($content['field_url']);
+		//field_technologies
+		//field_url
+
+		$fieldTechnologies = field_get_items('node', $node, 'field_technologies');
+		if(is_array($fieldTechnologies)){
+			foreach ($fieldTechnologies as $key => $value) {
+				echo '<div class="techtags">'.$value['taxonomy_term']->name.'</div>';
+			}
+		}
 
 		?>
 		<style>

@@ -9,22 +9,39 @@ body.mobile #header{
 
 
 body.mobile #block-block-3{
-	padding-right:72px;
+	padding-right:49px;
 }
 
 body.mobile #block-system-main-menu {
 	position: absolute;
-	bottom: -51px;
+	bottom: -66px;
 	width: 325px;
-	background: orange;
 	right: 0;
 	font-size: 12px;
 }
 
+body.mobile #block-system-main-menu .menu li a{
+	font-size: 12px;
+}
 
+body.mobile #header{
+	height:211px;
+}
+
+body.mobile #header .crown{
+	top: 178px;
+}
+
+body.mobile #header .region-header.hover{
+	background: url('../images/socialheadermobilehover.png') 0 -5px scroll no-repeat;
+}
 body.mobile #header .region-header{
 	right: 0;
-	background-position-x :115px;
+	width: 348px;
+	background: url('../images/socialheadermobile.png') 0 -5px scroll no-repeat;
+}
+body.front.mobile{
+	background-position-y :268px;
 }
 
 
@@ -379,8 +396,93 @@ body.mobile.section-contact-us .wrapper .googlemap{
 }
 
 
+/*403*/
+body.mobile.page-the403 #content {
+	height: 412px;
+}
+
+body.mobile #composition.manandhisbike .compositionImg_1 {
+	left: -29px;
+	top: 54px;
+	width: 243px;
+}
+
+body.mobile #composition.manandhisbike .compositionImg_2 {
+	left: 161px;
+	top: 52px;
+	width: 156px;
+}
+
+/*404*/
+body.mobile.page-the404 #content{
+	height: 406px;
+}
+
+.mobile #composition {
+	width: 295px;
+}
+
+.mobile .notFoundBody h2{
+	background: url('../images/flourisherrormobile.png') 56% 74% no-repeat;
+}
 
 
+.mobile #composition.pelican .compositionImg_1 {
+	top: 0;
+	left: 0;
+	width: 231px;
+}
+
+.mobile #composition.pelican .compositionImg_2 {
+	left: 185px;
+	top: 94px;
+	width: 97px;
+}
 
 
+.mobile #composition.blackbeauty .compositionImg_1 {
+	top: 0;
+	left: 0;
+	width: 231px;
+}
 
+.mobile #composition.blackbeauty .compositionImg_2 {
+	left: 204px;
+	top: 73px;
+	width: 154px;
+}
+
+.mobile #composition.blackbeauty .compositionImg_3 {
+	left: 189px;
+	top: 110px;
+	width: 51px;
+}
+
+.mobile #composition.blackbeauty .compositionImg_4 {
+	left: -31px;
+	top: 75px;
+	width: 114px;
+}
+
+.mobile #composition.blackbeauty .compositionImg_5 {
+	left: 96px;
+	top: 11px;
+	width: 30px;
+}
+
+
+.mobile .notFoundBody{
+	width: 287px;
+	top: 296px;
+	right: 0;
+}
+
+.mobile .notFoundBody h2 span {
+	font-size: 75px;
+}
+
+.mobile .notFoundBody h2{
+	font-size: 52px;
+	width: 107px;
+	margin-bottom: -30px;
+}

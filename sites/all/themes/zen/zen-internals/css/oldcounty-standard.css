@@ -142,3 +142,57 @@ body.section-contact-us #page.standard article header{
 body.section-contact-us #page.standard article .field-name-field-google-map .field-items .field-item{
 	margin:0;
 }
+
+
+
+
+
+/*404*/
+body.standard #composition.pelican .compositionImg_1{
+	left: -31px;
+	top: 74px;
+	width: 70%;
+}
+
+body.standard #composition.pelican .compositionImg_2{
+	left: 538px;
+	top: 386px;
+	width: 237px;
+}
+
+
+
+body.standard #composition.blackbeauty .compositionImg_1{
+	left: -41px;
+	top: 74px;
+	width: 70%;
+}
+
+body.standard #composition.blackbeauty .compositionImg_2{
+	left: 558px;
+	top: 244px;
+	width: 48%;
+}
+
+body.standard #composition.blackbeauty .compositionImg_3{
+	left: 510px;
+	top: 338px;
+	width: 151px;
+}
+
+body.standard #composition.blackbeauty .compositionImg_4{
+	left: -245px;
+	top: 273px;
+	width: 70%;
+}
+
+body.standard #composition.blackbeauty .compositionImg_5{
+	left: 272px;
+	top: 98px;
+	width: 9%;
+}
+
+
+body.standard .notFoundBody{
+	right: 40px;
+}

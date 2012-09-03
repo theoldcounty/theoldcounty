@@ -133,6 +133,7 @@ class Utils{
 	  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=383449641705024";
 	  fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
+
   <div id="godPane">
 		<div class="wrapper">
 			<div class="facebook">
@@ -160,6 +161,7 @@ class Utils{
 							print render($block['content']);
 						}
 					?>
+					<button><span>S</span>ubscribe</button>
 
 				</div>
 			</div>

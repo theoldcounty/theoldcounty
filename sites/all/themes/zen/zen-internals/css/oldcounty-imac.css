@@ -32,8 +32,8 @@ body.page-work #page.imac .view-work .view-content .views-row.views-row-even{
 	margin-right: 13px;
 }
 
-body.imac .nwwrapper input[type="text"]{
-	width: 1268px;
+body.imac .nwwrapper .form-type-textfield{
+	width: 1107px;
 }
 
 body.imac .view-news .view-content .views-row,
@@ -190,4 +190,15 @@ body.section-contact-us #page.imac article .field-name-field-google-map .field-i
 body.imac .vimeo iframe{
 	width: 1240px;
 	height: 700px;
+}
+
+
+body.imac #composition{
+	width: 1047px;
+	left: 248px;
+}
+
+body.imac.page-the403 #composition{
+	width: 961px;
+	left: 165px;
 }
