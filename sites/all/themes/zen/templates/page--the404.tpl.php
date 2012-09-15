@@ -147,7 +147,6 @@
 			</div>
 
 			<div id="composition"><div class="wrap"></div></div>
-			<div id="port"></div>
 
 		  <?php print $feed_icons; ?>
 		</div><!-- /#content -->

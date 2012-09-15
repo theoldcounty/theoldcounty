@@ -87,11 +87,11 @@ global $base_url;
 ?>
 <article class="node-<?php print $node->nid; ?> <?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 
-		<div class="title">
-			<?php print render($title); ?>
-		</div>
+		<div class="title"><?php print render($title); ?>~</div>
 
 		<?php
+		$fieldGrid = field_get_items('node', $node, 'field_grid_layout');
+
 		$fieldType = field_get_items('node', $node, 'field_type');
 		foreach($fieldType as $key => $value )
 		{
@@ -102,119 +102,116 @@ global $base_url;
 		print render($content['field_sub_header']);
 		print render($content['body']);
 
-		/*Feature Image*/
-
-		$featureImage = field_get_items('node', $node, 'field_feature_image');
-		if(is_array($featureImage)){
-			echo "<pre>";
-				//print_r($featureImage);
-			echo "</pre>";
-
-			foreach ($featureImage as $key => $value) {
-				if(array_key_exists($key, $featureImage)){
-					$imgUrl = $featureImage[$key]['uri'];  // the orig image uri
-					$style = 'project_small';
-					if($key==0){
-						$style = 'project_large';
-					}
-					if($key==1){
-						$style = 'project_medium';
-					}
-
-					$imgSrc = image_style_url($style, $imgUrl);
-
-					echo '<img src="'.$imgSrc.'">';
-				}
-			}
-		}
-		/*Feature Image*/
-
-		print render($content['field_url']);
-		//field_technologies
-		//field_url
+		$fieldUrl = field_get_items('node', $node, 'field_url');
 
 		$fieldTechnologies = field_get_items('node', $node, 'field_technologies');
-		if(is_array($fieldTechnologies)){
-			foreach ($fieldTechnologies as $key => $value) {
-				echo '<div class="techtags">'.$value['taxonomy_term']->name.'</div>';
+		?>
+
+		<div id="featuredElements" data-id="<?php echo $node->nid;?>" data-grid="<?php echo trim($fieldGrid['0']['value']);?>"></div>
+
+		<noscript>
+				<div id="featuredElements" class="grid2">
+					<ul>
+						<?php
+							//Feature Image
+							$featureImage = field_get_items('node', $node, 'field_feature_image');
+							if(is_array($featureImage)){
+
+								foreach ($featureImage as $key => $value) {
+									if(array_key_exists($key, $featureImage)){
+										$imgUrl = $featureImage[$key]['uri'];  // the orig image uri
+										$style = 'project_small';
+										$typeClass = 'smallAsset';
+										if($key==0){
+											$style = 'project_large';
+											$typeClass = 'largeAsset';
+										}
+										if($key==1){
+											$style = 'project_medium';
+											$typeClass = 'medAsset';
+										}
+
+										if($key == 2){
+											$typeClass = 'textBlog';
+										}
+
+										if($key == 2 || $key == 4 || $key == 10){
+											$typeClass = $typeClass.' last';
+										}
+
+										if($key > 10){
+											if($key % 2 ==0){
+												$typeClass = $typeClass.' last';
+											}
+										}
+
+										$imgSrc = image_style_url($style, $imgUrl);
+										$html = '<div class="images"><img src="'.$imgSrc.'"></div>';
+
+
+										if($key == 2){
+
+											if(is_array($fieldTechnologies)){
+												$tagHtml = '';
+												foreach ($fieldTechnologies as $key => $value) {
+													$tagHtml .= $value['taxonomy_term']->name.', ';
+												}
+												$tagHtml = substr($tagHtml, 0, -2);
+											}
+
+											$html = '
+												<div class="textBlock">
+													<h2>Client~</h2>
+													<h3>Client Background</h3>
+														'.$fieldUrl['0']['url'].'<br/>
+													<h3>Development</h3>
+													'.$tagHtml.'<br/>
+												</div>';
+										}
+
+										echo '<li class="'.$typeClass.'">'.$html.'</li>';
+									}
+								}
+							}
+							//Feature Image
+						?>
+					</ul>
+				</div>
+		</noscript>
+
+		<?php
+		/*
+			$field_vimeo = field_get_items('node', $node, 'field_vimeo');
+			if(is_array($field_vimeo)){
+				foreach($field_vimeo as $v) {#notice: $v is a copy, not a reference!
+					//print_r($v['file']->uri);
+
+					$split = array_reverse(explode("/", $v['file']->uri));
+					$vimeouri = $split['0'];
+					?><div class="vimeo"><iframe src="http://player.vimeo.com/video/<?php echo $vimeouri;?>?color=ff0179" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></div><?php
+				}
 			}
-		}
+		*/
 
 		?>
-		<style>
-			.featuredImages{}
-			.featuredImages ul{
-				margin:0;
-				padding:0;
-				overflow:hidden;
-			}
-			.featuredImages ul li{
-				float:left;
-				list-style-type:none;
-				margin-right: 14px;
-				margin-bottom: 16px;
-			}
 
-			.featuredImages ul li.largeImg{
-				background:red;
-				width:1007px;
-				height:497px;
-			}
-			.featuredImages ul li.medImg{
-				background:green;
-				width:497px;
-				height:497px;
-			}
-			.featuredImages ul li.smallImg{
-				background:gold;
-				width:240px;
-				height:240px;
-			}
-			.featuredImages ul li.textBlog{
-				background:grey;
-				width: 495px;
-				height: 241px;
-			}
-			.featuredImages ul li.last{
-				margin-right: 0;
-			}
-
-		</style>
-		<div class="featuredImages">
-			<ul>
-				<li class="largeImg">IMG</li>
-				<li class="medImg">IMG</li>
-				<li class="textBlog last">lorep ipsum dorem kjkoasdk jasjjd jias hjidhasjdhjoisahd</li>
-				<li class="smallImg">IMG</li>
-				<li class="smallImg last">IMG</li>
-				<li class="smallImg">IMG</li>
-				<li class="smallImg">IMG</li>
-				<li class="smallImg">IMG</li>
-				<li class="smallImg last">IMG</li>
-				<li class="smallImg">IMG</li>
-			</ul>
+		<div class="sharingIcons">
+			<div class="wrap">
+				<span class='st_facebook_hcount' displayText='Facebook'></span>
+				<span class='st_twitter_hcount' displayText='Tweet'></span>
+				<span class='st_googleplus_hcount' displayText='Google +'></span>
+			</div>
 		</div>
-		<?php
 
-
-		$field_vimeo = field_get_items('node', $node, 'field_vimeo');
-		if(is_array($field_vimeo)){
-			foreach($field_vimeo as $v) {#notice: $v is a copy, not a reference!
-				//print_r($v['file']->uri);
-
-				$split = array_reverse(explode("/", $v['file']->uri));
-				$vimeouri = $split['0'];
-				?><div class="vimeo"><iframe src="http://player.vimeo.com/video/<?php echo $vimeouri;?>?color=ff0179" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></div><?php
-			}
-		}
-
-		?><div class="misc"><a class="top" href="#">Top</a><a class="share" href="#">Share</a></div><?php
-		?><div class="seeall"><a href="<?php echo $base_url;?>/work">See All Work</a></div><?php
+		<div class="misc"><a class="top" href="#"><span>T</span>op</a><a class="share" href="#"><span>S</span>hare</a></div><?php
 
 	?>
 </article><!-- /.node -->
 
+
+
 <div class="relatedwork">
+	<h2>Related Projects ~</h2>
 	<div id="various">
 		<div class="wraps">
 		<?php

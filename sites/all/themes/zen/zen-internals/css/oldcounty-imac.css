@@ -25,8 +25,8 @@ body.page-work #page.imac .view-work .view-content .views-row .readmore{
 }
 
 body.imac .view-work .view-content .views-row{
-	width: 241px;
-	height: 408px;
+	width: 411px;
+	/*height: 408px;*/
 }
 body.page-work #page.imac .view-work .view-content .views-row.views-row-even{
 	margin-right: 13px;
@@ -56,6 +56,42 @@ body.imac.page-work .view-work .view-content .views-row .views-field-title{
 
 body.imac.page-work #page.imac .view-work .view-content .views-row .readmore{
 	width: 231px;
+}
+
+/*imac*/
+.imac #featuredElements ul li.largeAsset{
+	width:1256px;
+	height:auto;
+}
+
+.imac #featuredElements ul li.largeAsset .images{
+	height:497px;
+}
+
+.imac #featuredElements ul li.largeAsset .vimeo{
+	height: 704px;
+}
+
+.imac #featuredElements ul li.largeAsset .vimeo iframe {
+	width: 1261px;
+	height: 704px;
+}
+
+.imac #featuredElements ul li.medAsset{
+	width:621px;
+	height:624px;
+}
+.imac #featuredElements ul li.smallAsset{
+	width:303.5px;
+	height:304px;
+}
+.imac #featuredElements ul li.textBlog{
+	width: 621px;
+	height: 304px;
+}
+.imac #featuredElements ul li.spaceBlock{
+	width: 621px;
+	height: 304px;
 }
 
 
@@ -185,7 +221,16 @@ body.section-contact-us #page.imac article .field-name-field-google-map .field-i
 }
 
 
+body.imac.section-contact-us .wrapper .description{
+	width: 835px;
+}
 
+
+body.imac.section-tags .vimeo iframe,
+body.imac.section-news .vimeo iframe{
+	width: 488px;
+	height: 269px;
+}
 
 body.imac .vimeo iframe{
 	width: 1240px;

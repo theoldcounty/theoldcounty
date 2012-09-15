@@ -135,6 +135,10 @@
 		$record['path'] = $base_url."/".$path;
 		$record['jobtitle'] = $node->field_job_title['und']['0']['value'];
 
+		$stripeBannerText = $node->field_stripe_banner['und']['0']['value'];
+
+		$record['stripetext'] = $stripeBannerText;
+
 		$array[] = $record;
 
 		$vid++;

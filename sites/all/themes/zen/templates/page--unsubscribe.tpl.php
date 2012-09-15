@@ -68,6 +68,7 @@
  * @see zen_preprocess_page()
  * @see template_process()
  */
+ global $base_url;
 ?>
 
 <div id="headers">
@@ -135,15 +136,20 @@
 		  <?php endif; ?>
 		  <?php print render($page['content']); ?>
 
+			<div id="unsubscribecopy">
+				<h2>Please remove me from your email list ~</h2>
+				<h3><span>T</span>hanks to having followed us</h3>
+				<h4>Stop recieving news from The Old County</h4>
+				<p>Simply type your email address and press unsubscribe to be instantly removed from our newsletters.</p>
 
-			<p>Unsubscribe</p>
-			<form action="http://theoldcounty.createsend.com/t/r/u/nukhuj/" method="post">
-				<div>
-					<label for="email">Email address:</label><br />
-					<input id="email" name="cm-nukhuj-nukhuj" type="Text" /><br />
-					<input type="submit" value="Unsubscribe" /></div>
-			</form>
+				<form id="unsubscribeform" action="#" method="post">
+					<input id="email" name="email" type="Text" /><br />
+					<input type="submit" value="Unsubscribe" />
+					<button><span>U</span>nsubscribe</button>
+				</form>
+			</div>
 
+			<div class="condensedbar"><a href="<?php echo $base_url; ?>/work"><span>S</span>ee our new project</a></div>
 
 
 		  <?php print $feed_icons; ?>

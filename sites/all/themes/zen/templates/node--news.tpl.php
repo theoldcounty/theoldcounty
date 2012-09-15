@@ -120,8 +120,32 @@ global $base_url;
 		print render($content['field_sub_header']);
 		print render($content['body']);
 
-		?><div class="misc"><a class="top" href="#">Top</a><a class="share" href="#">Share</a></div><?php
-		?><div class="seeall"><a href="<?php echo $base_url;?>/news">See All News</a></div><?php
+		$field_video = field_get_items('node', $node, 'field_feature_video');
+		if(is_array($field_video)){
+			foreach($field_video as $v) {#notice: $v is a copy, not a reference!
+				//print_r($v['file']->uri);
+
+				$split = array_reverse(explode("/", $v['file']->uri));
+				$vimeouri = $split['0'];
+				?><div class="vimeo"><iframe src="http://player.vimeo.com/video/<?php echo $vimeouri;?>?color=d5c558" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></div><?php
+			}
+		}
+
+		?>
+
+
+		<div class="sharingIcons">
+			<div class="wrap">
+				<span class='st_facebook_hcount' displayText='Facebook'></span>
+				<span class='st_twitter_hcount' displayText='Tweet'></span>
+				<span class='st_googleplus_hcount' displayText='Google +'></span>
+			</div>
+		</div>
+
+		<div class="misc"><a class="top" href="#"><span>T</span>op</a><a class="share" href="#"><span>S</span>hare</a></div><?php
+
+
+		?><div class="seeall"><a href="<?php echo $base_url;?>/news"><span>S</span>ee All News</a></div><?php
 
 	?>
 </article><!-- /.node -->

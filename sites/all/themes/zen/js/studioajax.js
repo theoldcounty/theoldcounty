@@ -11,11 +11,38 @@ var studioMore = {
 						studioMore.getItems(0);
 					},
 					checkLoad: function(){
-						//console.log("runlow", studioMore.runlow);
-						//console.log("nomore", studioMore.nomore);
+						////console.log("runlow", studioMore.runlow);
+						////console.log("nomore", studioMore.nomore);
 						jQuery('.studiomore').delay(800).fadeOut(500);
 					},
-					isBannerOn: false,
+					relativeTime: function(time) {
+						 var units = [
+							{ name: "second", limit: 60, in_seconds: 1 },
+							{ name: "minute", limit: 3600, in_seconds: 60 },
+							{ name: "hour", limit: 86400, in_seconds: 3600  },
+							{ name: "day", limit: 604800, in_seconds: 86400 },
+							{ name: "week", limit: 2629743, in_seconds: 604800  },
+							{ name: "month", limit: 31556926, in_seconds: 2629743 },
+							{ name: "year", limit: null, in_seconds: 31556926 }
+						  ];
+						  var diff = (new Date() - new Date(time*1000)) / 1000;
+						  if (diff < 5) return "now";
+
+						  var i = 0;
+						  while (unit = units[i++]) {
+							if (diff < unit.limit || !unit.limit){
+							  var diff =  Math.floor(diff / unit.in_seconds);
+
+							  var objs = {
+											diff: diff,
+											units: unit.name
+										}
+
+
+							  return objs;
+							}
+						  };
+					},
 					getItems: function(start){
 												var apiurl = "sites/all/modules/custom/mixedcarousel/studio.php";
 												//var end = start + carousel.limit;
@@ -28,24 +55,16 @@ var studioMore = {
 												  success: function(data)          //on recieve of reply
 												  {
 
-													//console.log("data",data);
+													////console.log("data",data);
 													var itemTemplate = "";
 
 													if(data!=null){
 
 														var numItemsBack = data.length;
 
-															//console.log("data",data);
 														jQuery.each(data, function(key, value) {
-															//console.log(key + ': ' + value);
 
-															//var nid = value.nid;
-															//var title = value.title;
-															//var type = value.type;
-
-															var thumbsize = value.thumbsize;
-
-
+																var thumbsize = value.thumbsize;
 																var vid = key+1;
 
 																var starture = false;
@@ -71,13 +90,10 @@ var studioMore = {
 																}
 																//if 6 close
 
-
 																//force closure
 																if(numItemsBack <= studioMore.limit && vid==numItemsBack){
 																	closure = true;
-																	//console.log("force closure");
 																}
-
 
 															var wrapStart = "";
 															var wrapEnd = "";
@@ -98,20 +114,74 @@ var studioMore = {
 															var jobtitle = value.jobtitle;
 															var path = value.path;
 
+															var unix_timestamp = value.created;
+
+															var timeago = studioMore.relativeTime(unix_timestamp);
+
+															var isOld = false;
+															switch (timeago.units)
+															{
+																case "day":
+																	if(timeago.diff > 2){
+																		isOld = true;
+																	}
+																	break;
+																case "week":
+																	if(timeago.diff >= 1){
+																		isOld = true;
+																	}
+																	break;
+																case "month":
+																	if(timeago.diff >= 1){
+																		isOld = true;
+																	}
+																	break;
+																case "year":
+																	if(timeago.diff >= 1){
+																		isOld = true;
+																	}
+																	break;
+															}
+
+															var stripBanner = '';
+															var stripeText = value.stripetext;
+
+															if(stripeText){
+																var first = stripeText.substr(0,1);
+																var later = stripeText.substr(1);
+																stripeText = '<span>'+first+'</span>'+later;
+
+																var bannerType = "banner1";
+																var charCount = stripeText.length;
+																if(charCount > 24){
+																	bannerType = "banner2";
+
+																	var stripeComponents = stripeText.split(" ");
+																	stripeComponents[0] = '<span>'+stripeComponents[0];
+																	stripeComponents[1] = stripeComponents[1]+'</span>';
+																	stripeComponents.splice(2,0,"<br>");
+																	var stripeText = stripeComponents.join(" ");
+																}
+
+																if(!isOld){
+																		stripBanner = '<div id="stripeWrapper" class="'+bannerType+'"><div class="stripeImg"></div><div class="stripeText">'+stripeText+'</div></div>';
+																}
+															}
+
 															var hiddenData = '<div class="hiddenPane"><div class="corner"></div><div class="title"><a href="'+path+'">'+title+'</a></div><div class="jobtitle">'+jobtitle+'</div><div class="body">'+body+'</div></div>';
-															var rowTemplate = '<div class="views-row views-row-'+vid+' '+thumbsize+'"><div class="revealedPane"><img src="'+value.imgSrc+'"></div>'+hiddenData+'</div>';
+															var rowTemplate = '<div class="views-row views-row-'+vid+' '+thumbsize+'"><div class="revealedPane">'+stripBanner+'<img src="'+value.imgSrc+'"></div>'+hiddenData+'</div>';
 															itemTemplate += wrapStart+''+rowTemplate+''+wrapEnd;
 														});
 
-														//console.log("numItemsBack", numItemsBack);
+														////console.log("numItemsBack", numItemsBack);
 
 														var isMobile = jQuery('#page').hasClass("mobile");
 														var isImac = jQuery('#page').hasClass("imac");
 														var isStandard = jQuery('#page').hasClass("standard");
 
-														////console.log("isMobile", isMobile);
-														////console.log("isImac", isImac);
-														////console.log("isStandard", isStandard);
+														//////console.log("isMobile", isMobile);
+														//////console.log("isImac", isImac);
+														//////console.log("isStandard", isStandard);
 
 														var caroulLim = -1;
 
@@ -127,8 +197,8 @@ var studioMore = {
 
 														//if standard -  -1
 														//
-														////console.log(" (studioMore.limit + caroulLim)",  (studioMore.limit + caroulLim));
-														////console.log("numItemsBack", numItemsBack);
+														//////console.log(" (studioMore.limit + caroulLim)",  (studioMore.limit + caroulLim));
+														//////console.log("numItemsBack", numItemsBack);
 
 														if(numItemsBack < (studioMore.limit + caroulLim))
 														{
@@ -142,34 +212,24 @@ var studioMore = {
 													}
 													else
 													{
-														////console.log("no more results");
+														//////console.log("no more results");
 														studioMore.nomore = true;
 													}
 
 													//batchWidth
 													numItems = jQuery('.studiocarousel .view-studio-carousel .view-content .views-row').size();
-													/////console.log("numItems", numItems);
+													///////console.log("numItems", numItems);
 
 													//count number of smallwraps.
 													smallwrapItems = jQuery('.studiocarousel .view-studio-carousel .view-content .views-row.smallwrap').size();
-													////console.log("smallwrapItems", smallwrapItems);
+													//////console.log("smallwrapItems", smallwrapItems);
 
 													studioMore.itemsInBatch = numItems - smallwrapItems;
-													////console.log("strips", carousel.itemsInBatch);
+													//////console.log("strips", carousel.itemsInBatch);
 													//carousel.itemsInBatch
 
 													studioMore.maxBatch = studioMore.itemsInBatch/6;
-													////console.log("carousel.maxBatch", carousel.maxBatch);
-
-
-
-													if(!studioMore.isBannerOn){
-														var template = '<div class="latestbanner"></div>';
-
-														var firstElement = jQuery('.view-studio-carousel .view-content .views-row-1');
-														firstElement.append(template);
-														studioMore.isBannerOn = true;
-													}
+													//////console.log("carousel.maxBatch", carousel.maxBatch);
 
 												  }
 												});
@@ -187,6 +247,7 @@ jQuery(document).ready(function() {
 
 		var isStudioPage = jQuery('body').hasClass('page-studio');
 		if(isStudioPage){
+			//console.log("render studio");
 			studioMore.init();
 		}
 
@@ -222,7 +283,7 @@ jQuery(document).ready(function() {
 			jQuery(this).addClass("over");
 
 			obj.isFirst = jQuery(this).hasClass('views-row-1');
-			//console.log("obj.isFirst", obj.isFirst);
+			////console.log("obj.isFirst", obj.isFirst);
 
 			if(!obj.inMotion){
 				obj.o = this;

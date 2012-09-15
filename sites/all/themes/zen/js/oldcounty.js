@@ -4,7 +4,7 @@ jQuery(document).ready(function() {
 	jQuery('.clickable').live("click", function(event){
 		event.preventDefault();
 		var contentLink = jQuery(this).parent().find('.title a').attr('href');
-		console.log("contentLink", contentLink);
+		//console.log("contentLink", contentLink);
 		window.location = contentLink;
 	});
 
@@ -30,23 +30,85 @@ jQuery(document).ready(function() {
 		jQuery("#campaignmonitor-subscribe-form input:submit").click();
 	});
 
+	jQuery(".share").click(function(e) {
+		e.preventDefault();
+		var isOpen = jQuery(this).hasClass('open');
+
+		if(isOpen){
+			jQuery(this).removeClass('open').addClass('close');
+			jQuery(".sharingIcons .wrap").fadeOut(300);
+		}else{
+			jQuery(this).removeClass('close').addClass('open');
+			jQuery(".sharingIcons .wrap").fadeIn(300);
+		}
+	});
+
+	jQuery(".top").click(function(e) {
+		e.preventDefault();
+		jQuery(window).scrollTo( 0, 1900, {queue:true} );
+	});
+
+
+	jQuery('body #block-system-main-menu .menu li').each(function(index) {
+		var name = jQuery(this).find('a').text();
+		var first = name.substr(0,1);
+		var later = name.substr(1);
+		jQuery(this).find('a').html('<span>'+first+'</span>'+later);
+	});
+
 
 	//campaign monitor
 	jQuery('#campaignmonitor-subscribe-form').submit(function(e) {
 		e.preventDefault();
 		var submission = jQuery(this).serializeArray();
 		submission['0'].value = "Subscriber";
-		var url = jQuery(this).attr("action");
 
-		jQuery('.nwwrapper').html("<h2>Newsletter</h2><p>...please wait, we are subscribing you to our newsletter.</p>");
-
+		var base = 'http://localhost/oldcounty/';
+		var url = base+'sites/libraries/campaignmonitor/samples/subscriber/addsubscribe.php';
 		jQuery.post(url, submission,
-		  function(data) {
-			var message = '<h2>Thanks for your interest in the old county!</h2><p>You are going to receive news from us by email, only interesting stuff, promise...</p>';
-			jQuery('.nwwrapper').html(message);
-		  }
+			function(data) {
+				obj = JSON.parse(data);
+
+				if(obj.RESULT == "OK"){
+					var message = '<h2>Thanks for your interest in the old county!</h2><p>You are going to receive news from us by email, only interesting stuff, promise...</p>';
+				}
+				else{
+					var message = '<h2>We got a problem!</h2><p>An error has occured, we will request you try and subscribe again soon.</p>';
+				}
+				jQuery('.nwwrapper').html(message);
+			}
 		);
 	});
+
+
+
+	jQuery("#unsubscribeform button").click(function() {
+		jQuery("#unsubscribeform input:submit").click();
+	});
+
+	//campaign monitor
+	jQuery('#unsubscribeform').submit(function(e) {
+		e.preventDefault();
+		var submission = jQuery(this).serializeArray();
+
+		var base = 'http://localhost/oldcounty/';
+		var url = base+'sites/libraries/campaignmonitor/samples/subscriber/deleteunsubscribe.php';
+		jQuery.post(url, submission,
+			function(data) {
+				console.log(data);
+				obj = JSON.parse(data);
+
+				if(obj.RESULT == "OK"){
+					var message = '<h2>Thanks for your interest in the old county!</h2><p>We have now taken you off our lists, promise...</p>';
+				}
+				else{
+					var message = '<h2>We got a problem!</h2><p>Our apologises, an error has occured, we will request you try and unsubscribe again soon.</p>';
+				}
+				jQuery('#unsubscribecopy').html(message);
+			}
+		);
+	});
+
 
 	//ensure front page looks sweet
 	var isFrontPage = jQuery('body').hasClass('front');
@@ -56,11 +118,14 @@ jQuery(document).ready(function() {
 		var frontStripTop = parseInt(jQuery('body.front .strip1').css("top"), "10");
 		jQuery('body.front .strip1').css("top", frontStripTop+top);
 
+		var frontBackgroundPositionY = parseInt(jQuery('body.front').css("background-position-y"), "10");
+		jQuery('body.front').css("background-position-y", frontBackgroundPositionY+top);
+
 		var isMobile = jQuery('body').hasClass('mobile');
 		if(!isMobile){
-			console.log("is front");
-			var frontBackgroundPositionY = parseInt(jQuery('body.front').css("background-position-y"), "10");
-			jQuery('body.front').css("background-position-y", frontBackgroundPositionY+top);
+			//console.log("is front");
+			//
+			//
 		}
 
 		var dirtyBandTop = parseInt(jQuery('body.front .dirtyband').css("background-position-y"), "10");
@@ -131,8 +196,8 @@ var paralaxElement = {
 									var yPos = e.pageY - offset.top;
 
 									/* Get percentage positions */
-									var mouseXPercent = Math.round(xPos / jQuery(this).width() * 100)/25;
-									var mouseYPercent = Math.round(yPos / jQuery(this).height() * 100)/25;
+									var mouseXPercent = Math.round(xPos / jQuery(this).width() * 100)/55;
+									var mouseYPercent = Math.round(yPos / jQuery(this).height() * 100)/55;
 
 									/* Position Each Layer */
 									jQuery('.parallax-layer').each(
@@ -203,5 +268,24 @@ var paralaxElement = {
 
 		paralaxElement.init();
 	}
+
+
+/*
+var tilda = {
+				add: function(title){
+					return title+" ~";
+				}
+			}
+	//isHome
+	var isHome = jQuery('body').hasClass('page-home');
+	if(isHome){
+		jQuery('.view-id-news .views-row').each(function(index) {
+			var title = jQuery(this).find('.views-field-title a').text();
+			jQuery(this).find('.views-field-title a').text(tilda.add(title));
+		});
+
+	}
+*/
+
 
 });

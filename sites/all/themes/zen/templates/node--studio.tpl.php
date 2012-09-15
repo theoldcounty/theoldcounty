@@ -114,8 +114,18 @@ global $base_url;
 		print render($content['field_bio']);
 		print render($content['field_education']);
 
+	?>
+		<div class="sharingIcons">
+			<div class="wrap">
+				<span class='st_facebook_hcount' displayText='Facebook'></span>
+				<span class='st_twitter_hcount' displayText='Tweet'></span>
+				<span class='st_googleplus_hcount' displayText='Google +'></span>
+			</div>
+		</div>
 
-		?><a class="share" href="#">Share</a></div><?php
+		<div class="misc"><a class="top" href="#"><span>T</span>op</a><a class="share" href="#"><span>S</span>hare</a></div>
+	<?php
+
 	?>
 	</div>
 </article><!-- /.node -->

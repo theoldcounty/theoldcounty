@@ -71,7 +71,7 @@
 ?>
 
 <div id="headers">
-  <div class="dirt">	
+  <div class="dirt">
   <header id="header" role="banner">
 
     <?php if ($logo): ?>
@@ -121,21 +121,20 @@
   <div id="main">
 
     <div id="content" class="column" role="main">
-     
+
 		<div class="homecarousel">
 			<div class="view-home-carousel view-id-home_carousel">
 				<div class="view-content"><?php echo service::generateHtml("home"); ?></div>
 			</div>
 		</div>
-			
-			
+
 		<div class="relatednews">
 		<?php
 			$viewblock = module_invoke('views', 'block_view', 'news-home_news_block');
 			print render($viewblock['content']);
 		?>
 		</div>
-	 
+
     </div><!-- /#content -->
 
     <div id="navigation">
@@ -179,10 +178,10 @@
     <?php endif; ?>
 
   </div><!-- /#main -->
-  		
+
 
   <?php print render($page['footer']); ?>
-  
+
 
 </div><!-- /#page -->
 

@@ -88,9 +88,15 @@ body.section-tags #page.standard #content{
 	width: 221px;
 }
 
+body.standard.section-tags .vimeo iframe,
+body.standard.section-news .vimeo iframe{
+	width: 488px;
+	height: 269px;
+}
+
 .vimeo iframe{
-	width:1000px;
-	height:572px;
+	width: 1010px;
+	height: 572px;
 }
 
 /*Services*/

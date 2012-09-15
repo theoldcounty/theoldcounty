@@ -7,10 +7,10 @@
 							jQuery('.view-id-home_carousel .view-content').empty();//clear any existing items to provide clean js version
 						},
 						reset: function(){
-							////console.log("reset");
+							//////console.log("reset");
 							direction = 0;
 							speed = 200;
-							////console.log("glide carousel", direction);
+							//////console.log("glide carousel", direction);
 
 							var slidable = jQuery('.homecarousel .view-home-carousel .view-content');
 							carousel.isInMotion = true;
@@ -49,6 +49,34 @@
 								carousel.nomore = false;
 								carousel.checkArrows();
 						},
+						relativeTime: function(time) {
+							 var units = [
+								{ name: "second", limit: 60, in_seconds: 1 },
+								{ name: "minute", limit: 3600, in_seconds: 60 },
+								{ name: "hour", limit: 86400, in_seconds: 3600  },
+								{ name: "day", limit: 604800, in_seconds: 86400 },
+								{ name: "week", limit: 2629743, in_seconds: 604800  },
+								{ name: "month", limit: 31556926, in_seconds: 2629743 },
+								{ name: "year", limit: null, in_seconds: 31556926 }
+							  ];
+							  var diff = (new Date() - new Date(time*1000)) / 1000;
+							  if (diff < 5) return "now";
+
+							  var i = 0;
+							  while (unit = units[i++]) {
+								if (diff < unit.limit || !unit.limit){
+								  var diff =  Math.floor(diff / unit.in_seconds);
+
+								  var objs = {
+												diff: diff,
+												units: unit.name
+											}
+
+
+								  return objs;
+								}
+							  };
+						},
 						getItems: function(start){
 								var apiurl = "sites/all/modules/custom/mixedcarousel/mixed.php";
 								//var end = start + carousel.limit;
@@ -61,14 +89,14 @@
 								  success: function(data)          //on recieve of reply
 								  {
 
-									//console.log("data",data);
+									////console.log("data",data);
 									var itemTemplate = "";
 
 									if(data!=null){
 										var numItemsBack = data.length;
 
 										jQuery.each(data, function(key, value) {
-											////console.log(key + ': ' + value);
+											//////console.log(key + ': ' + value);
 
 											//var nid = value.nid;
 											//var title = value.title;
@@ -106,7 +134,7 @@
 												//force closure
 												if(numItemsBack <= carousel.limit && vid==numItemsBack){
 													closure = true;
-													//console.log("force closure");
+													////console.log("force closure");
 												}
 
 
@@ -131,33 +159,83 @@
 
 											var tagHtml = value.tags;
 
-											/*
-											var tagHtml ="";
-											jQuery.each(tags, function(i, val) {
-												tagHtml +='<a href="'+val.termpath+'">'+val.termname+'</a> ,';
-											});
+											var stripeText = value.stripetext;
 
-											tagHtml = tagHtml.substring(0, tagHtml.length - 1);
-											*/
+											var unix_timestamp = value.created;
+
+											var timeago = carousel.relativeTime(unix_timestamp);
+											//console.log("timeago", timeago);
+
+											var isOld = false;
+											switch (timeago.units)
+											{
+												case "day":
+													if(timeago.diff > 2){
+														isOld = true;
+													}
+													break;
+												case "week":
+													if(timeago.diff >= 1){
+														isOld = true;
+													}
+													break;
+												case "month":
+													if(timeago.diff >= 1){
+														isOld = true;
+													}
+													break;
+												case "year":
+													if(timeago.diff >= 1){
+														isOld = true;
+													}
+													break;
+											}
+											stripeText= 'New Project';
+
+											if(stripeText){
+												var first = stripeText.substr(0,1);
+												var later = stripeText.substr(1);
+												stripeText = '<span>'+first+'</span>'+later;
+
+												var bannerType = "banner1";
+												var charCount = stripeText.length;
+												if(charCount > 24){
+													bannerType = "banner2";
+
+													var stripeComponents = stripeText.split(" ");
+													stripeComponents[0] = '<span>'+stripeComponents[0];
+													stripeComponents[1] = stripeComponents[1]+'</span>';
+													stripeComponents.splice(2,0,"<br>");
+													var stripeText = stripeComponents.join(" ");
+												}
+
+												//console.log("stripeText", stripeText);
+												//console.log("charCount", charCount);
+
+												var stripBanner = '';
+												if(!isOld){
+														stripBanner = '<div id="stripeWrapper" class="'+bannerType+'"><div class="stripeImg"></div><div class="stripeText">'+stripeText+'</div></div>';
+												}
+											}
 
 											var hiddenData = '<div class="hiddenPane"><div class="corner"></div><div class="title"><a href="'+path+'">'+title+'</a></div><div class="subhead">'+subhead+'</div><div class="tags">'+tagHtml+'</div><div class="body">'+body+'</div><div class="clickable"></div></div>';
 
-											var rowTemplate = '<div class="views-row views-row-'+vid+' '+thumbsize+'"><div class="revealedPane"><div class="stripeImg"></div><div class="stripeText">New Project</div><img src="'+value.imgSrc+'"></div>'+hiddenData+'</div>';
+											var rowTemplate = '<div class="views-row views-row-'+vid+' '+thumbsize+'"><div class="revealedPane">'+stripBanner+'<img src="'+value.imgSrc+'"></div>'+hiddenData+'</div>';
 											itemTemplate += wrapStart+''+rowTemplate+''+wrapEnd;
 
 										});
 
 
 
-										//console.log("numItemsBack", numItemsBack);
+										////console.log("numItemsBack", numItemsBack);
 
 										var isMobile = jQuery('#page').hasClass("mobile");
 										var isImac = jQuery('#page').hasClass("imac");
 										var isStandard = jQuery('#page').hasClass("standard");
 
-										////console.log("isMobile", isMobile);
-										////console.log("isImac", isImac);
-										////console.log("isStandard", isStandard);
+										//////console.log("isMobile", isMobile);
+										//////console.log("isImac", isImac);
+										//////console.log("isStandard", isStandard);
 
 										var caroulLim = -1;
 
@@ -173,7 +251,7 @@
 
 										if(numItemsBack < (carousel.limit + caroulLim))
 										{
-											////console.log("disable next here.");
+											//////console.log("disable next here.");
 											//running low on items - NO more next.
 											carousel.nomore = true;
 											carousel.runlow = true;
@@ -188,7 +266,7 @@
 									}
 									else
 									{
-										////console.log("no more results");
+										//////console.log("no more results");
 										carousel.nomore = true;
 										if(carousel.nomore)
 										{
@@ -198,24 +276,24 @@
 
 									//batchWidth
 									numItems = jQuery('.homecarousel .view-home-carousel .view-content .views-row').size();
-									////console.log("numItems", numItems);
+									//////console.log("numItems", numItems);
 
 									//count number of smallwraps.
 									smallwrapItems = jQuery('.homecarousel .view-home-carousel .view-content .views-row.smallwrap').size();
-									////console.log("smallwrapItems", smallwrapItems);
+									//////console.log("smallwrapItems", smallwrapItems);
 
 									carousel.itemsInBatch = numItems - smallwrapItems;
-									////console.log("strips", carousel.itemsInBatch);
+									//////console.log("strips", carousel.itemsInBatch);
 									//carousel.itemsInBatch
 
 									carousel.maxBatch = carousel.itemsInBatch/6;
-									////console.log("carousel.maxBatch", carousel.maxBatch);
+									//////console.log("carousel.maxBatch", carousel.maxBatch);
 
 								  }
 								});
 						},
 						init: function(){
-							////console.log("set up carousel");
+							//////console.log("set up carousel");
 
 							//create next and prev buttons
 							var templateNext = '<div class="arrow next"><a href="#">NEXT</a></div>';
@@ -226,7 +304,7 @@
 
 							var batchWidth = jQuery('.homecarousel').width();
 							var batchheight = jQuery('.homecarousel').height();
-							//////console.log("batchWidth", batchWidth);
+							////////console.log("batchWidth", batchWidth);
 							carousel.empty();
 							carousel.batchSlide = batchWidth;
 							carousel.batchToken = batchheight;
@@ -241,8 +319,8 @@
 						batchToken: "",
 						toggleArrow: function(direction, enable){
 
-										////console.log("direction -- ", direction);
-										////console.log("enable -- ", enable);
+										//////console.log("direction -- ", direction);
+										//////console.log("enable -- ", enable);
 										if(enable){
 											jQuery('.arrow.'+direction).removeClass("disable");
 											jQuery('.arrow.'+direction+' a').show();
@@ -253,7 +331,7 @@
 						},
 						checkArrows: function(){
 
-							////console.log("CHECK ARROWS ");
+							//////console.log("CHECK ARROWS ");
 
 							if(carousel.batchCount <=0){
 								carousel.toggleArrow("previous", false);
@@ -276,7 +354,7 @@
 
 						},
 						glide: function(direction, speed){
-							////console.log("glide carousel", direction);
+							//////console.log("glide carousel", direction);
 
 							var slidable = jQuery('.homecarousel .view-home-carousel .view-content');
 							carousel.isInMotion = true;
@@ -325,7 +403,7 @@ jQuery(document).ready(function() {
 
 		jQuery('.homecarousel .views-row .views-field-field-feature-image').live("click", function(event){
 			event.preventDefault();
-			////console.log("clicked on carousel image");
+			//////console.log("clicked on carousel image");
 		});
 
 
@@ -384,7 +462,7 @@ jQuery(document).ready(function() {
 					isPrev = jQuery(this).parent().hasClass("previous");
 					isNext = jQuery(this).parent().hasClass("next");
 
-					////console.log("carousel.itemsInBatch", carousel.itemsInBatch);
+					//////console.log("carousel.itemsInBatch", carousel.itemsInBatch);
 
 					//check if its already in motion
 
@@ -393,7 +471,7 @@ jQuery(document).ready(function() {
 							if(isPrev)
 							{
 								carousel.batchCount--;
-								////console.log("click on prev arrow", isPrev);
+								//////console.log("click on prev arrow", isPrev);
 								carousel.glide("+", 500);
 								carousel.nomore = false;//switch it off in case
 							}
@@ -401,14 +479,14 @@ jQuery(document).ready(function() {
 							if(isNext)
 							{
 								carousel.batchCount++;
-								////console.log("click on next arrow", isNext);
+								//////console.log("click on next arrow", isNext);
 								carousel.glide("-", 500);
 
-								////console.log("max batch :", carousel.maxBatch);
-								////console.log("batchCount", carousel.batchCount);
+								//////console.log("max batch :", carousel.maxBatch);
+								//////console.log("batchCount", carousel.batchCount);
 
 								if(carousel.batchCount >= carousel.maxBatch){
-									////console.log("get more");
+									//////console.log("get more");
 									carousel.getItems(carousel.next);
 								}
 
@@ -417,7 +495,7 @@ jQuery(document).ready(function() {
 
 							carousel.checkArrows();
 
-							////console.log("carousel.batchCount", carousel.batchCount);
+							//////console.log("carousel.batchCount", carousel.batchCount);
 					}
 
 					//jQuery('.homecarousel .view-content').animate

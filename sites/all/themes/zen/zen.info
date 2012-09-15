@@ -12,12 +12,14 @@ stylesheets[all][] = zen-internals/css/oldcounty-standard.css
 stylesheets[all][] = zen-internals/css/oldcounty-mobile.css
 
 
+scripts[]         = js/jquery.scrollTo-1.4.3.1-min.js
 scripts[]         = js/homegrowncarousel.js
 scripts[]         = js/carousel.js
 scripts[]         = js/studioajax.js
 scripts[]         = js/godpane.js
 scripts[]         = js/screenadjust.js
 scripts[]         = js/oldcounty.js
+scripts[]         = js/oldcounty.getworkassets.js
 
 regions[header]         = Header
 regions[navigation]     = Navigation bar

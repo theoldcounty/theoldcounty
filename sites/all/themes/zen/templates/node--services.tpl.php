@@ -119,9 +119,19 @@ global $base_url;
 
 		print render($content['field_sub_header']);
 		print render($content['body']);
+		?>
 
-		?><div class="misc"><a class="top" href="#">Top</a><a class="share" href="#">Share</a></div><?php
-		?><div class="seeall"><a href="<?php echo $base_url;?>/services">See All Services</a></div><?php
+		<div class="sharingIcons">
+			<div class="wrap">
+				<span class='st_facebook_hcount' displayText='Facebook'></span>
+				<span class='st_twitter_hcount' displayText='Tweet'></span>
+				<span class='st_googleplus_hcount' displayText='Google +'></span>
+			</div>
+		</div>
+
+		<div class="misc"><a class="top" href="#"><span>T</span>op</a><a class="share" href="#"><span>S</span>hare</a></div><?php
+
+		?><div class="seeall"><a href="<?php echo $base_url;?>/services"><span>S</span>ee All Services</a></div><?php
 
 	?>
 </article><!-- /.node -->

@@ -112,6 +112,12 @@ class Utils{
   <meta http-equiv="cleartype" content="on">
 
   <?php print $styles; ?>
+
+	<!--[if IE 8]>
+		<link rel="stylesheet" type="text/css" href="<?php print $base_path . $path_to_zen; ?>/zen-internals/css/ie.css">
+	<![endif]-->
+
+
   <?php print $scripts; ?>
   <?php if ($add_respond_js): ?>
     <!--[if lt IE 9]>
@@ -134,6 +140,9 @@ class Utils{
 	  fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
 
+	<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+	<script type="text/javascript">stLight.options({publisher: "ur-156ea7d3-132b-17b7-103c-f50a7841e981"}); </script>
+
   <div id="godPane">
 		<div class="wrapper">
 			<div class="facebook">
@@ -152,16 +161,18 @@ class Utils{
 					<h2>Newsletter</h2>
 					Type your mail and press enter, we promise you to send only interesting content!
 
-					<?php
-						$lists = CampaignMonitor::getConnector()->getLists();
-						if ($lists) {
-							$listarray = array_keys($lists);
-							$delta = $listarray['0'];
-							$block['content'] = drupal_get_form('campaignmonitor_subscribe_form', $delta);
-							print render($block['content']);
-						}
-					?>
-					<button><span>S</span>ubscribe</button>
+					<div class="newsletterform">
+						<?php
+							$lists = CampaignMonitor::getConnector()->getLists();
+							if ($lists) {
+								$listarray = array_keys($lists);
+								$delta = $listarray['0'];
+								$block['content'] = drupal_get_form('campaignmonitor_subscribe_form', $delta);
+								print render($block['content']);
+							}
+						?>
+						<button><span>S</span>ubscribe</button>
+					</div>
 
 				</div>
 			</div>
@@ -186,7 +197,7 @@ class Utils{
 						new TWTR.Widget({
 						  version: 2,
 						  type: 'profile',
-						  rpp: 5,
+						  rpp: 4,
 						  interval: 5000,
 						  width: 'auto',
 						  height: 300,

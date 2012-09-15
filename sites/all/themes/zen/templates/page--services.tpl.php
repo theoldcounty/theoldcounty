@@ -69,7 +69,6 @@
  * @see template_process()
  */
 ?>
-
 <div id="headers">
   <div class="dirt">
   <header id="header" role="banner">
@@ -134,19 +133,19 @@
 			<ul class="action-links"><?php print render($action_links); ?></ul>
 		  <?php endif; ?>
 		  <?php print render($page['content']); ?>
-
-			<div class="notFoundBody">
-				<h2><span>4</span>03</h2>
-				<p>Forbidden - you don't have permission to access this page.</p>
-				<?php
-					?><a href="<?php echo $base_path;?>"><span>G</span>o back Home</a><?php
-				?>
-			</div>
-
-				<div id="composition"><div class="wrap"></div></div>
-
 		  <?php print $feed_icons; ?>
 		</div><!-- /#content -->
+
+
+		<div class="sharingIcons">
+			<div class="wrap">
+				<span class='st_facebook_hcount' displayText='Facebook'></span>
+				<span class='st_twitter_hcount' displayText='Tweet'></span>
+				<span class='st_googleplus_hcount' displayText='Google +'></span>
+			</div>
+		</div>
+
+		<div class="misc"><a class="top" href="#"><span>T</span>op</a><a class="share" href="#"><span>S</span>hare</a></div>
 
 		<div id="navigation">
 

@@ -110,31 +110,33 @@
     // We hide the comments and links now so that we can render them later.
     hide($content['comments']);
     hide($content['links']);
-	
-		
+
 	?>
-	
-	
 	<div class="wrapper">
 		<div class="googlemap">
-		<?php
-		
-		$image = field_get_items('node', $node, 'field_google_overlay');
-		$img_url = $image['0']['uri'];  // the orig image uri
-		$style = 'google_map';  // or any other custom image style you've created via /admin/config/media/image-styles
-	
-			?><div class="googleoverlay"><img src="<?php print image_style_url($style, $img_url) ?>"></div><?php
-			print render($content['field_google_map']);
-		?>
+			<?php
+				?><div class="googleoverlay"></div><?php
+				print render($content['field_google_map']);
+			?>
 		</div>
 		<div class="description">
-		<?php
-			print render($content['body']);
-		?>
+			<?php
+				print render($content['body']);
+			?>
+
+			<div class="sharingIcons">
+				<div class="wrap">
+					<span class='st_facebook_hcount' displayText='Facebook'></span>
+					<span class='st_twitter_hcount' displayText='Tweet'></span>
+					<span class='st_googleplus_hcount' displayText='Google +'></span>
+				</div>
+			</div>
+
+			<div class="misc"><a class="top" href="#"><span>T</span>op</a><a class="share" href="#"><span>S</span>hare</a></div>
 		</div>
 	</div>
 	<?php
-	
+
     //print render($content);
   ?>
 

@@ -7,6 +7,56 @@ body.mobile #header{
 	width: 320px;
 }
 
+body.mobile .nwwrapper h2{
+	font-size: 20px;
+	line-height: 24px;
+	width: 252px;
+}
+
+body.mobile .nwwrapper .form-type-textfield{
+	width: 230px;
+}
+
+body.mobile .nwwrapper input[type="text"]{
+	font-size: 18px;
+	height: 49px;
+}
+
+body.mobile .nwwrapper button{
+	width: 109px;
+	height: 71px;
+	font-size: 15px;
+	padding-top: 16px;
+	padding-bottom: 16px;
+	top: 0;
+}
+
+body.mobile .fbwrapper{
+	width: 338px;
+	height: 258px;
+	float: left;
+}
+
+body.mobile .godtitle{
+	width: 361px;
+	height: 66px;
+}
+
+body.mobile #godPane{
+	height: 335px;
+}
+
+
+body.mobile .twwrapper {
+	float: left;
+	width: 360px;
+}
+
+
+body.mobile .twwrapper h2{
+	text-transform: none;
+	font-size: 21px;
+}
 
 body.mobile #block-block-3{
 	padding-right:49px;
@@ -41,7 +91,12 @@ body.mobile #header .region-header{
 	background: url('../images/socialheadermobile.png') 0 -5px scroll no-repeat;
 }
 body.front.mobile{
-	background-position-y :268px;
+	background-position-y :185px;
+}
+
+
+body.mobile .nwwrapper form{
+	margin-top: 40px;
 }
 
 
@@ -99,28 +154,40 @@ body.section-tags #page.mobile .seeall{
 
 
 
-body.mobile .section-contact-us .wrapper .googlemap{
+body.mobile.section-contact-us .wrapper .googlemap{
 	width: 287px;
 	height: 288px;
 }
 
 
+body.mobile.section-contact-us .wrapper .description{
+	width: 293px;
+}
+
+body.mobile.section-contact-us .sharingIcons{
+	height: 54px;
+}
 
 
-body.mobile .vimeo iframe{
+body.mobile.section-tags .vimeo iframe,
+body.mobile.section-news .vimeo iframe{
 	width: 270px;
 	height: 160px;
+}
+
+body.mobile #pagewrap{
+	margin-top: -21px;
 }
 
 /*Home*/
 
 
 .mobile .homecarousel {
-	height:1500px;
+	height:485px;
 }
 
 .mobile .homecarousel .view-id-home_carousel{
-	height:1500px;
+	height:475px;
 }
 
 .mobile .homecarousel .view-id-home_carousel .view-content{
@@ -221,9 +288,55 @@ body.mobile.page-work .view-work .view-content .views-row .readmore{
 	position:relative;
 }
 
-
 body.node-type-work #page.mobile article {width: 290px;}
 body.node-type-work #page.mobile .relatedwork{width:auto;}
+
+
+.mobile.node-type-work .relatedwork h2{
+	margin-left:0;
+}
+
+
+
+/*mobile*/
+
+.mobile #featuredElements ul li.largeAsset {
+	width: 289px;
+	height:auto;
+}
+
+.mobile .vimeo iframe {
+	width: 289px;
+	height: 160px;
+}
+
+.mobile #featuredElements ul li.largeAsset .images{
+	height:140px;
+}
+
+.mobile #featuredElements ul li.medAsset {
+	width: 289px;
+	height: 289px;
+}
+
+.mobile #featuredElements ul li.textBlog {
+	width: 289px;
+	height: auto;
+}
+
+.mobile #featuredElements ul li.smallAsset {
+	width: 137px;
+	height: 137px;
+}
+
+.mobile #featuredElements ul li.largeAsset .vimeo{
+	height: 160px;
+}
+
+.mobile #featuredElements ul li.spaceBlock {
+	height: auto;
+}
+
 
 
 /*Services*/
@@ -248,14 +361,7 @@ body.mobile.page-services .view-services .view-content .views-row .readmore{
 	position:relative;
 }
 
-
-
-
-
 #page.mobile .studiocarousel{width:290px;}
-
-
-
 
 .mobile .studiocarousel .view-id-studio_carousel .view-content{
 	width: 242px;
@@ -303,9 +409,6 @@ body.mobile.page-services .view-services .view-content .views-row .readmore{
 	margin-bottom:10px!important;
 	overflow: hidden;
 }
-
-
-
 
 body.mobile .view-news .view-content .views-row .readmore,
 body.mobile .view-work .view-content .views-row .readmore,
@@ -360,6 +463,7 @@ body.mobile.section-contact-us article .field-name-body{
 body.mobile.section-contact-us .wrapper .googlemap{
 	width: 287px;
 	height: 288px;
+	margin-bottom: 10px;
 }
 
 .section-contact-us #page.mobile article{
@@ -371,15 +475,7 @@ body.mobile.section-contact-us .wrapper .googlemap{
 	display:none;
 }
 
-.section-contact-us #page.mobile .glare{
-	position: absolute;
-	top: 0;
-	height: 100%;
-	width: 100%;
-	z-index: 1;
-	background: gold;
-	opacity: 0.3;
-}
+
 
 .section-contact-us #page.mobile .field-label{
 	display:none;
@@ -470,7 +566,6 @@ body.mobile.page-the404 #content{
 	width: 30px;
 }
 
-
 .mobile .notFoundBody{
 	width: 287px;
 	top: 296px;
@@ -485,4 +580,32 @@ body.mobile.page-the404 #content{
 	font-size: 52px;
 	width: 107px;
 	margin-bottom: -30px;
+}
+
+.mobile .banner{
+	display: none;
+}
+
+.mobile .switcher{
+	background: none;
+}
+
+.mobile .switcher li{
+	background: none;
+	padding-right: 5px;
+	height: 22px;
+}
+
+.mobile .switcher li a{
+	color:#353430;
+	font-size: 11px;
+}
+
+.mobile .switcher li.selected a{
+	color:#b0920d;
+}
+
+
+#page.mobile .view-news .view-content .views-row .views-field-body{
+	padding-bottom:10px;
 }

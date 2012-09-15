@@ -164,6 +164,10 @@
 		$record['tags'] = $tagHtml;
 
 
+		$stripeBannerText = $node->field_stripe_banner['und']['0']['value'];
+
+		$record['stripetext'] = $stripeBannerText;
+
 		$array[] = $record;
 
 		$vid++;

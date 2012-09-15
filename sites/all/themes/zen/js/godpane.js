@@ -46,7 +46,7 @@
 
 									var isMobile = jQuery('body').hasClass('mobile');
 									if(isMobile){
-										completeMovement+=35;
+										completeMovement+=65;
 									}
 
 
