@@ -5,7 +5,8 @@ Campaign Monitor
 ----------------
 Description
 ----------------
-This module integrates the mailing list service Campaign Monitor. http://www.campaignmonitor.com
+This module integrates the mailing list service Campaign Monitor.
+http://www.campaignmonitor.com
 
 Campaign Monitor is a mailing list and newsletter service useful for web and
 design professionals to manage newsletters and campaigns for your clients. The
@@ -23,11 +24,11 @@ This module was developed by T-Rex Art: http://www.trexart.com.au
 Installation
 ------------
 - At this time the module uses the built in libraries of PHP5 for the SOAP calls
-so it is not available for use with PHP4. If you find there are errors, make
-sure that your PHP installation has SOAP enabled.
+  so it is not available for use with PHP4. If you find there are errors, make
+  sure that your PHP installation has SOAP enabled.
 
 - Create a folder in your modules directory called campaignmonitor and put the
-module's files in this directory
+  module's files in this directory.
 
 - Go into sites/all/libraries/ folder and download or clone the createsend-php
   API from github.com. It can be download from
@@ -44,15 +45,17 @@ module's files in this directory
 ------------
 Requirements
 ------------
-This modules used the libraries module to detect the Campaign Monitor API
+This module uses the Libraries module to detect the Campaign Monitor API
 library. It also uses the default "thumbnail" image style to generate image
 previews in the administration interface, so changing this image style will
 affect the administration interface.
 
+Ref. http://www.drupal.org/project/libraries
+
 -------------
 Configuration
 -------------
-Make sure to have your API Key and Client Id.
+Make sure to have your API Key and Client ID.
 To retrieve these values follow the instructions here:
 http://www.campaignmonitor.com/api/required.aspx
 
@@ -63,14 +66,14 @@ Enter these into the module's settings page. You will then be able to choose if
 you wish all lists to be available on the site, or if you want to just select
 certain lists to display on the site.
 
-It is encouraged for you to spend some time setting up your campaign monitor
+It is encouraged for you to spend some time setting up your Campaign Monitor
 account before diving in with this module.
 
 NOTE: There is a setting for each list in Campaign Monitor where if you
 un-subscribe from one list, you are un-subscribed from all lists. The default
 for this is to un-subscribe from all. This makes it so if in the 'My Newsletters'
 area, a user un-subscribes from one list, they will be un-subscribed from all.
-I recommend turning off this feature in the Campaign Monitor admin.
+I recommend turning off this feature in the Campaign Monitor administration.
 
 ------------
 Future plans

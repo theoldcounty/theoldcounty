@@ -1,0 +1,351 @@
+#stripeWrapper.banner2 .stripeText{
+	top:-11px;
+	right: -35px;
+}
+#stripeWrapper.banner1 .stripeText{
+	top:-12px;
+	right: -20px;
+}
+
+
+.tags{
+	display:inline;
+}
+
+body.page-news .region-bottom{
+	margin-top:-70px;
+}
+
+
+body.standard #page .relatedwork{
+	float:left;
+	overflow:hidden;
+	width:1000px;
+}
+
+.switchwrapper {
+	overflow: hidden;
+}
+
+.switcher{
+	overflow: hidden;
+	padding: 0;
+	margin: 0;
+	margin-bottom: 15px;
+	background: url('../images/endbanner.png') 100% 0 no-repeat;
+	width: auto;
+	float: left;
+	padding-right: 13px;
+}
+
+
+.switcher li {
+	float: left;
+	list-style-type: none;
+	background: url('../images/midbanner.png') 0 0 repeat-x;
+	padding-right: 10px;
+	height: 34px;
+	padding-top: 7px;
+	padding-left: 10px;
+}
+
+.switcher li.selected a {
+	color: white;
+	text-decoration: none;
+}
+
+.switcher li a {
+	text-decoration: none;
+	color: #353430;
+	text-transform: uppercase;
+	font-size: 12px;
+	font-family: 'SiemensSerifSemiboldRegular';
+}
+
+.switcher li a span {
+	text-decoration: underline;
+	text-transform: uppercase;
+	font-size: 16px;
+	font-family: 'SiemensSerifSemiboldItalic';
+}
+
+.page-work .view-work .view-content .views-row {
+	float: left;
+	width: 498px;
+	margin-right: 15px;
+	margin-bottom: 20px;
+	position: relative;
+	height: 492px;
+}
+
+.page-work .view-work .view-content {
+	overflow: hidden;
+	margin-bottom: 70px;
+}
+
+.page-work .view-work .view-content ul{
+	margin:0;
+	padding:0;
+}
+
+.page-work .view-work .view-content ul li{
+	list-style-type:none;
+}
+
+.page-work .view-filters {
+	display: none;
+}
+
+.banner {
+	width: 111px;
+	height: 42px;
+	position: absolute;
+	margin-top: 26px;
+	left: 0;
+}
+.bannerStrip {
+	background: url('../images/stripBar.png') 0 0 repeat-x;
+	height: 40px;
+}
+.bannerEdge {
+	background: url('../images/stripEdge.png') 0 0 no-repeat;
+	width: 11px;
+	height: 40px;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+
+
+
+body.standard .view-services .view-content{
+	width:575px;
+}
+
+body.standard #header .region-header{
+	right:-108px;
+}
+
+
+/*contact us page*/
+
+body.standard.section-contact-us .sharingIcons{
+	float:right;
+	width:576px;
+}
+
+body.standard.section-contact-us .misc{
+	width:576px;
+	float:right;
+}
+
+
+
+#featuredElements ul{
+	margin:0;
+	padding:0;
+	overflow:hidden;
+}
+#featuredElements ul li{
+	float:left;
+	list-style-type:none;
+	margin-right: 14px;
+	margin-bottom: 16px;
+}
+
+#featuredElements ul li img{
+	width:auto;
+	height:100%;
+	max-width: none;
+}
+
+#featuredElements ul li.largeAsset img{
+	height: auto;
+	width: 100%;
+}
+
+
+#featuredElements ul li.medAsset img{
+	width:100%;
+	height:auto;
+}
+
+#featuredElements ul li.largeAsset{
+	width:1010px;
+	height:auto;
+	overflow:hidden;
+}
+
+#featuredElements ul li.largeAsset .vimeo{
+	height:572px;
+}
+
+#featuredElements ul li.largeAsset .images{
+	height:400px;
+}
+
+#featuredElements ul li.medAsset{
+	width:498px;
+	height:500px;
+	overflow:hidden;
+}
+#featuredElements ul li.smallAsset{
+	width:242px;
+	height:242px;
+	overflow:hidden;
+}
+#featuredElements ul li.textBlog{
+	width: 498px;
+	height: 242px;
+}
+#featuredElements ul li.spaceBlock{
+	width: 498px;
+	height: 242px;
+}
+#featuredElements ul li.last{
+	margin-right: 0;
+}
+
+
+#featuredElements ul li.textBlog h2{
+	margin:0;
+	color:#353430;
+	font-size: 32px;
+	line-height: 32px;
+	font-family: 'SiemensSerifSemiboldRegular';
+}
+#featuredElements ul li.textBlog h3{
+	margin:0;
+	color:#353430;
+	font-size: 16px;
+	line-height: 16px;
+	font-family: 'TimesNewRomanRegular';
+}
+
+.textBlock a{
+	color:#b0920d;
+	text-decoration:none;
+}
+
+body.standard.section-work #page article{
+width:auto;
+}
+
+body.standard.node-type-work #page .wraps .view-work .views-field-field-feature-image ul{
+	margin:0;
+	padding:0;
+}
+
+body.standard.node-type-work #page .wraps .view-work .views-field-field-feature-image ul li{
+	list-style-type:none;
+}
+
+.homegrowncarousel .wraps .view{
+overflow:hidden;
+}
+
+.homegrowncarousel .previous{
+display:none;
+}
+
+.homegrowncarousel .next{
+display:none;
+}
+
+
+.page-studio .view-studio-carousel .view-content{
+	overflow: hidden;
+	position: relative;
+}
+
+
+.page-studio .studiocarousel .view-id-studio_carousel .views-row{
+	float: left;
+	background: white;
+	color: #8F8C85;
+	width: 497px;
+	margin-right: 10px;
+	border: 1px solid #C7C4BD;
+	margin-bottom: 12px;
+}
+
+.page-studio .studiocarousel .view-id-studio_carousel .views-row.studio_middle_desaturate {
+	width: 242px;
+	height: 496px;
+}
+
+.page-studio .studiocarousel .view-id-studio_carousel .views-row.studio_large_desaturate {
+	width: 496px;
+	height: 496px;
+}
+
+.page-studio .studiocarousel .view-id-studio_carousel .views-cols.smallwrap {
+	width: 241px;
+	height: 497px;
+	float: left;
+	margin-right: 10px;
+}
+
+.page-studio .studiocarousel .view-id-studio_carousel .views-cols {
+	margin-bottom: 13px;
+}
+
+.page-studio .studiocarousel .view-id-studio_carousel .views-row.studio_small_desaturate {
+	width: 241px;
+	height: 241px;
+	margin-bottom: 12px;
+}
+
+.page-studio .studiocarousel .view-id-studio_carousel .views-row .hiddenPane {
+	display: none;
+	margin: 2px;
+	border: 1px solid #C7C4BD;
+	padding: 20px;
+	position: relative;
+}
+
+.page-studio .view-studio-carousel .revealedPane {
+	position: relative;
+}
+
+.page-studio .studiocarousel .view-id-studio_carousel .views-row.studio_small_desaturate .hiddenPane {
+height: 195px;
+}
+
+.page-studio .studiocarousel .view-id-studio_carousel .views-row.studio_large_desaturate .hiddenPane {
+height: 450px;
+}
+
+.page-studio .studiocarousel .view-id-studio_carousel .views-row.studio_middle_desaturate .hiddenPane {
+height: 450px;
+}
+
+/*imac*/
+body.imac.section-work #page article{
+width:auto;
+}
+
+
+body.imac #header .region-header{
+	right:-24px;
+}
+
+body.imac.section-contact-us .imac#page article .field-name-body{
+	margin-left:20px;
+}
+
+body.imac.section-contact-us .misc{
+	width:810px;
+	float:right;
+}
+
+body.imac.section-contact-us .sharingIcons{
+	width:810px;
+	float:right;
+}
+
+
+body.imac .view-news .view-content .views-row{
+	height:340px;
+}

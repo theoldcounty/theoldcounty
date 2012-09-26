@@ -65,13 +65,15 @@
     font-style: normal;
 }
 
-
+.feed-icon{
+	display:none;
+}
 
 /*site globals*/
 body{
-	background:#f5f3ec;
 	font-family: 'Times New Roman';
 	color: #8f8c85;
+	background: #f5f3ec;
 }
 
 body .region-bottom {

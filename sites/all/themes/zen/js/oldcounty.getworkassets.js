@@ -454,7 +454,10 @@ jQuery(document).ready(function () {
 			gridPreference = 6;
 		}
 
-		var url = 'http://localhost/oldcounty/sites/all/modules/custom/mixedcarousel/work.php?id='+currentId;
+		var basepath = Drupal.settings.citris.baseUrl;
+
+
+		var url = basepath+'/sites/all/modules/custom/mixedcarousel/work.php?id='+currentId;
 		grid.getJson(url, function(data){
 			grid.storedData = data;
 			grid.gridPreference = gridPreference;

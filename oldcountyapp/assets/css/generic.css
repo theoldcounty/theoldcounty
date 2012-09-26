@@ -1,0 +1,291 @@
+/* generic */
+
+body {
+    font-family: 'Times New Roman';
+    text-align: left;
+	width: 810px;
+	overflow: hidden;
+	margin:0;
+}
+
+.app .container {
+    position: relative;
+    width: 810px;
+    background: none;
+	height: auto;
+	overflow: hidden;
+}
+
+img {
+    border: 0;
+	display: block;
+}
+
+.clear{
+	clear: both;
+}
+
+/* like us */
+
+/* body */
+.app .container .body {
+    background: #efede6;
+    clear: both;
+}
+
+
+
+body{
+	background:none;
+}
+
+.video{
+	background: url('../images/grit.png') 0 0 no-repeat;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.wraps{
+	width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.news{
+	background: url(../images/oldcountyemblem.jpg) 0 0 no-repeat;
+	padding: 29px;
+}
+
+.news ul{
+	margin:0;
+	padding:0;
+	overflow:hidden;
+}
+
+.news ul li{
+	float:left;
+	width: 242px;
+	margin-right: 13px;
+}
+
+.news ul li.last{
+	margin:0;
+}
+
+.title h2{
+	color: #353430;
+	text-decoration: none;
+	font-weight: bold;
+	font-family: 'SiemensSerifSemiboldRegular';
+	font-size: 32px;
+}
+.title h2 a{
+	color: #353430;
+	text-decoration: none;
+}
+
+.image{
+	border: 1px solid #C7C4BD;
+	width: 238px;
+	height: 238px;
+}
+
+.bodyText{
+	color: #8F8C85;
+	padding-bottom: 14px;
+}
+
+.readmore{
+	border-top: 1px solid #BCBAB1;
+	border-bottom: 1px solid #BCBAB1;
+	text-align: right;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+.readmore a{
+	color: #353430;
+	text-decoration: none;
+	font-size: 12px;
+	font-family: 'SiemensSerifSemiboldRegular';
+	text-transform: uppercase;
+}
+
+.readmore a span {
+	text-decoration: none;
+	font-size: 16px;
+	font-family: 'SiemensSerifSemiboldItalic';
+	text-transform: uppercase;
+}
+
+.vimeo{
+	width: 600px;
+	height: 350px;
+	overflow: hidden;
+}
+
+.vimeo img{
+    width: 600px;
+}
+
+.newsarticle{
+	overflow: hidden;
+	padding: 27px;
+	padding-top: 0;
+	margin-top: -20px;
+	position: relative;
+	margin-bottom: 10px;
+}
+
+.newsarticle .primary{
+	float:left;
+}
+
+
+.newsarticle .details{
+	width: 489px;
+	position: absolute;
+	bottom: 0;
+	right: 27px;
+}
+
+footer{
+	background: url('../images/footer.jpg') 0 0 no-repeat;
+	height: 223px;
+	color: #ffffff;
+}
+
+.newsletter{
+	background: url('../images/newsletterbackground.jpg') 0 0 no-repeat;
+}
+
+
+
+.nwwrapper button {
+	position: absolute;
+	right: 0;
+	top: 0;
+	color: white;
+	background: #88867F;
+	border: 1px solid black;
+	font-family: SiemensSerifSemiboldRegular;
+	font-size: 15px;
+	padding: 11px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-transform: uppercase;
+	width: 111px;
+	height: 63px;
+}
+
+.nwwrapper form {
+	margin-top: 20px;
+	overflow: hidden;
+}
+
+.nwwrapper .form-type-textfield {
+	width: 350px;
+	float: right;
+	margin-right: 110px;
+}
+
+.nwwrapper .form-item-name, .nwwrapper .form-item-email label {
+	display: none;
+}
+
+.nwwrapper input[type="text"] {
+	height: 63px;
+	width: 100%;
+	border: 1px solid black;
+	font-size: 24px;
+	padding: 10px;
+	font-family: 'Arial';
+	font-style: italic;
+	color: #8F8C85;
+	padding-left: 22px;
+}
+
+.nwwrapper input[type="submit"] {
+	display: none;
+}
+
+.newsletterform {
+	position: relative;
+}
+
+.component{
+	float:left;
+	width:350px;
+	color:#ffffff;
+}
+
+.component h2{
+	margin:0;
+	padding:0;
+	text-transform: uppercase;
+	font-family: 'SiemensSerifSemiboldRegular';
+	font-size: 30px;
+}
+
+.newsletterform{
+}
+
+.nwwrapper{
+	overflow:hidden;
+	padding: 27px;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.details .readmore{
+	border:0;
+}
+
+.primary .date{
+	position: absolute;
+	bottom: 0;
+	font-size: 15px;
+	font-family: 'SiemensSerifSemiboldItalic';
+}
+
+footer{
+	overflow:hidden;
+	padding:41px;
+	padding-bottom: 0;
+	height: 182px;
+}
+
+footer .logo{
+	background: url('../images/footerlogo.png') 0 0 no-repeat;
+	width: 115px;
+	height: 182px;
+	float: left;
+}
+
+footer .pane{
+	float:right;
+}
+
+footer .pane a{
+	color:#ffffff;
+}
+
+.video .readmore{
+	padding-right: 107px;
+}
+
+.nwwrapper h2{
+	color:#ffffff;
+}
+.nwwrapper button:hover{
+	background: #B0920D;
+}
+
+.readmore:hover,
+.readmore a:hover {
+	color: #B0920D;
+}
+
+.xdebug-error{
+	display:none;
+}

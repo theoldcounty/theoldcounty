@@ -19,11 +19,11 @@ function campaignmonitor_registration_permission() {
 }
 
 /**
- * Hooks into the registration form and adds the option to select on of the
- * lists avaliable from campaign monitor on registration.
+ * Hooks into the registration form and adds the option to select one of the
+ * available Campaign Monitor lists on registration.
  */
 function campaignmonitor_registration_form_user_register_form_alter(&$form, &$form_state, $form_id) {
-  // Get connected to the API and get lists.
+  // Get connected to the API and retrieve the lists.
   $cm = CampaignMonitor::getConnector();
   $lists = $cm->getLists();
 
@@ -46,7 +46,7 @@ function campaignmonitor_registration_form_user_register_form_alter(&$form, &$fo
     $defaults = variable_get('campaignmonitor_general', array());
     $form['campaignmonitor']['campaignmonitor_lists'] = array(
       '#type' => 'checkboxes',
-      '#description' => !empty($defaults['instructions']) ? t($defaults['instructions']) : t('Select the news lists, that you want to subscribe to from campaign monitor.'),
+      '#description' => !empty($defaults['instructions']) ? t($defaults['instructions']) : t('Select the news lists that you want to subscribe to.'),
       '#options' => $options,
     );
   }
@@ -54,8 +54,8 @@ function campaignmonitor_registration_form_user_register_form_alter(&$form, &$fo
 }
 
 /**
- * Submission form handler, were information about the selected list is
- * submitted to campaign monitor.
+ * Submission form handler. Information about the selected list will be
+ * submitted to Campaign Monitor.
  */
 function campaignmonitor_registration_form_user_register_submit($form, &$form_state) {
   if (isset($form_state['values']['campaignmonitor_lists']) && !form_get_errors()) {
@@ -68,7 +68,7 @@ function campaignmonitor_registration_form_user_register_submit($form, &$form_st
       if ($selected) {
         // Try to subscribe to the list.
         if (!$cm->subscribe($list_id, check_plain($form_state['values']['mail']), check_plain($form_state['values']['name']))) {
-          form_set_error('', t('You were not subscribed to the list, please try again.'));
+          form_set_error('', t('You were not subscribed to the list. Please try again later.'));
           $form_state['redirect'] = FALSE;
           return FALSE;
         }
@@ -76,7 +76,8 @@ function campaignmonitor_registration_form_user_register_submit($form, &$form_st
       }
     }
 
-    // Remove it from the form before the submit functions takes over (might not be needed).
+    // Remove it from the form before the submit functions take over (might not
+    // be needed).
     unset($form_state['values']['campaignmonitor_lists']);
   }
 }

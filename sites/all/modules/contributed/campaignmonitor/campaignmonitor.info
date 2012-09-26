@@ -12,9 +12,9 @@ files[] = includes/campaignmonitor.admin.inc
 files[] = includes/campaignmonitor_list.admin.inc
 files[] = includes/campaignmonitor_stats.admin.inc
 files[] = lib/campaignmonitor.class.inc
-; Information added by drupal.org packaging script on 2012-04-21
-version = "7.x-1.0-rc1"
+; Information added by drupal.org packaging script on 2012-09-19
+version = "7.x-1.0-rc2"
 core = "7.x"
 project = "campaignmonitor"
-datestamp = "1335027973"
+datestamp = "1348081895"
 

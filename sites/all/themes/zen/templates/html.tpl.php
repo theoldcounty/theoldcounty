@@ -113,8 +113,12 @@ class Utils{
 
   <?php print $styles; ?>
 
+	<!--[if IE 7]>
+		<link rel="stylesheet" type="text/css" href="<?php print $base_path . $path_to_zen; ?>/zen-internals/css/ie7.css">
+	<![endif]-->
+
 	<!--[if IE 8]>
-		<link rel="stylesheet" type="text/css" href="<?php print $base_path . $path_to_zen; ?>/zen-internals/css/ie.css">
+		<link rel="stylesheet" type="text/css" href="<?php print $base_path . $path_to_zen; ?>/zen-internals/css/ie8.css">
 	<![endif]-->
 
 

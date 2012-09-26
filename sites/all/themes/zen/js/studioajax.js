@@ -112,6 +112,9 @@ var studioMore = {
 															var title = value.title;
 															var tags = value.tags;
 															var jobtitle = value.jobtitle;
+															if(jobtitle == null){
+																jobtitle = '';
+															}
 															var path = value.path;
 
 															var unix_timestamp = value.created;
@@ -168,8 +171,24 @@ var studioMore = {
 																}
 															}
 
-															var hiddenData = '<div class="hiddenPane"><div class="corner"></div><div class="title"><a href="'+path+'">'+title+'</a></div><div class="jobtitle">'+jobtitle+'</div><div class="body">'+body+'</div></div>';
-															var rowTemplate = '<div class="views-row views-row-'+vid+' '+thumbsize+'"><div class="revealedPane">'+stripBanner+'<img src="'+value.imgSrc+'"></div>'+hiddenData+'</div>';
+
+															console.log("value.imgSrc", value.imgSrc);
+
+															var displayControl = '';
+															var revealPane = '';
+															var imgCover = '<img src="'+value.imgSrc+'">';
+															if(!value.imgSrc){
+																imgCover = '';
+																displayControl = 'display:block!important;';
+															}
+															else{
+																revealPane = '<div class="revealedPane">'+stripBanner+imgCover+'</div>';
+															}
+
+
+
+															var hiddenData = '<div class="hiddenPane" style="'+displayControl+'"><div class="corner"></div><div class="title"><a href="'+path+'">'+title+'</a></div><div class="jobtitle">'+jobtitle+'</div><div class="body">'+body+'</div><div class="clickable"></div></div>';
+															var rowTemplate = '<div class="views-row views-row-'+vid+' '+thumbsize+'">'+revealPane+hiddenData+'</div>';
 															itemTemplate += wrapStart+''+rowTemplate+''+wrapEnd;
 														});
 
@@ -242,8 +261,6 @@ jQuery(document).ready(function() {
 
 
 	/*studio*/
-
-
 
 		var isStudioPage = jQuery('body').hasClass('page-studio');
 		if(isStudioPage){

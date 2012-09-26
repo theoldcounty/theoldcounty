@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * @file
+ * The statistics administration page for the Campaign Monitor module.
+ */
+
+/**
+ * Generates the statistics overview.
+ *
+ * @return string
+ * The rendered HTML.
+ */
 function campaignmonitor_admin_settings_stats() {
   $account = variable_get('campaignmonitor_account', FALSE);
   if (!$account) {
@@ -7,7 +18,7 @@ function campaignmonitor_admin_settings_stats() {
     return '';
   }
 
-  // Load list informations.
+  // Load list information.
   $cm = CampaignMonitor::getConnector();
   $lists = $cm->getLists();
   $error = $cm->getLatestError();
@@ -19,7 +30,7 @@ function campaignmonitor_admin_settings_stats() {
   $output = '';
   foreach ($lists as $id => $list) {
     if (campaignmonitor_is_list_enabled($id)) {
-      // List was enable so get stats.
+      // List was enabled so get the stats.
       $output .= theme('campaignmonitor_list_stats', array('list' => $list, 'stats' => $cm->getListStats($id)));
     }
   }

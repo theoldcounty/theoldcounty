@@ -119,7 +119,11 @@
 		$imgData = $node->field_feature_image;
 		$imgUri = $imgData['und']['0']['uri'];
 
-		$imgSrc = image_style_url($thumbsize, $imgUri);
+		$imgSrc = null;
+
+		if($imgUri){
+			$imgSrc = image_style_url($thumbsize, $imgUri);
+		}
 
 		$body = strip_tags($node->body['und']['0']['value']);
 
@@ -176,11 +180,8 @@
 		/*
  		echo "<pre>";
 		print_r($array);
-		echo "</pre>";
-		*/
+		echo "</pre>";*/
 
-
-
-  echo json_encode($array);
+echo json_encode($array);
 
 ?>

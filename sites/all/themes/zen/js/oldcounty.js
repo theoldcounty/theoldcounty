@@ -157,6 +157,8 @@ jQuery(document).ready(function() {
 		jQuery('.section-studio .studiomore a').html("<span>S</span>ee More Team Members");
 
 		var isStudioPage = jQuery('body').hasClass('page-studio');
+
+		//console.log("studio node");
 	}
 
 	//section-services
@@ -170,6 +172,11 @@ jQuery(document).ready(function() {
 	if(isNewsSection){
 		jQuery('#block-system-main-menu').find('li a#news').parent().addClass("active-trail");
 		jQuery('.view-id-news .pager li a').html("<span>S</span>ee All News");
+
+		var count = jQuery('.view-content .views-row').length;
+		if(count <= 10){
+			jQuery('.region-bottom').css('marginTop', 0);
+		}
 	}
 
 	/*gold glare map*/

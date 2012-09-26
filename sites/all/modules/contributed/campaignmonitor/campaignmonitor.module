@@ -29,7 +29,7 @@ function campaignmonitor_permission() {
     ),
     'access archive' => array(
       'title' => t('Access newsletter archive'),
-      'description' => t('Access newsletter achives'),
+      'description' => t('Access newsletter achive'),
     ),
     'join newsletter' => array(
       'title' => t('Join newsletters'),
@@ -182,7 +182,7 @@ function campaignmonitor_block_view($delta) {
   $block = array();
 
   if (CAMPAIGNMONITOR_ARCHIVE_DELTA == $delta) {
-    // Connect to campaign monitor and get past campaigns.
+    // Connect to Campaign Monitor and get past campaigns.
     $campaigns = CampaignMonitor::getConnector()->getCampaigns();
     if ($campaigns) {
       $content = '<ul>';
@@ -208,7 +208,7 @@ function campaignmonitor_block_view($delta) {
         $block['content'] = drupal_get_form('campaignmonitor_subscribe_form', $delta);
       }
       else {
-        $block['content'] = t('The Campaing monitor list "@list" is not enabled.', array('@list' => $lists[$delta]['name']));
+        $block['content'] = t('The Campaign monitor list "@list" is not enabled.', array('@list' => $lists[$delta]['name']));
       }
 
       // Add some basic styling of form elements.
@@ -228,10 +228,10 @@ function campaignmonitor_block_view($delta) {
 function campaignmonitor_subscribe_form($form, &$form_state, $list_id) {
   global $user;
 
-  // Get campaign monitor object.
+  // Get Campaign Monitor object.
   $cm = CampaignMonitor::getConnector();
 
-  // Get lists form campaign monitor (or the local cache).
+  // Get lists from Campaign Monitor (or the local cache).
   $list = $cm->getExtendedList($list_id);
   $list_options = variable_get('campaignmonitor_list_' . $list_id, array());
 
@@ -246,21 +246,21 @@ function campaignmonitor_subscribe_form($form, &$form_state, $list_id) {
     ),
   );
 
-  // Try to get e-mail address from the user object.
+  // Try to get the e-mail address from the user object.
   if ($user->uid != 0) {
     $email = $user->mail;
   }
 
   // Should the name field be displayed for this user.
   if (isset($list_options['display']['name']) && $list_options['display']['name']) {
-    // Token replace if the token module is pressent.
+    // Token replace if the token module is present.
     if (isset($list_options['tokens']['name']) && module_exists('token') && $user->uid != 0) {
       $name = token_replace($list_options['tokens']['name'], array(), array('clear'=> TRUE));
     }
 
-    // Check if the user is subscribed and get name from campaign monitor.
+    // Check if the user is subscribed and get name from Campaign Monitor.
     if (!empty($email) && $cm->isSubscribed($list_id, $email)) {
-      // If subscribed, get her/his name from campaign monitor.
+      // If subscribed, get her/his name from Campaign Monitor.
       $subscriber = $cm->getSubscriber($list_id, $email);
       $name = isset($subscriber['Name']) ? $subscriber['Name'] : $name;
     }
@@ -283,7 +283,7 @@ function campaignmonitor_subscribe_form($form, &$form_state, $list_id) {
   );
 
   foreach ($list['CustomFields'] as $key => $field) {
-    // Form API, can't handle keys with [] in all cases.
+    // Form API can't handle keys with [] in all cases.
     $form_key = str_replace(array('[', ']'), '', $key);
 
     // Check if field should be displayed.
@@ -292,7 +292,7 @@ function campaignmonitor_subscribe_form($form, &$form_state, $list_id) {
       continue;
     }
 
-    // Token replace default value, if the token module is pressent.
+    // Token replace default value, if the token module is present.
     $token = '';
     if (module_exists('token') && isset($list_options['tokens'][$form_key])) {
       $token = token_replace($list_options['tokens'][$form_key]);
@@ -382,7 +382,7 @@ function campaignmonitor_subscribe_form($form, &$form_state, $list_id) {
  * if the API call fails.
  */
 function campaignmonitor_subscribe_form_submit($form, &$form_state) {
-  // Get a campaign monitor object.
+  // Get a Campaign Monitor object.
   $cm = CampaignMonitor::getConnector();
 
   $custom_fields = array();
@@ -428,8 +428,11 @@ function campaignmonitor_subscribe_form_submit($form, &$form_state) {
  * Checks if the list given by id is enabled locally. If the list id enabled 1
  * is returned else 0.
  *
- * @param string $list_id campaign monitor list id
+ * @param string $list_id
+ *   The Campaign Monitor list ID.
+ *
  * @return int
+ *   1 if list is enabled, 0 otherwise.
  */
 function campaignmonitor_is_list_enabled($list_id) {
   $list_options = variable_get('campaignmonitor_list_' . $list_id, FALSE);

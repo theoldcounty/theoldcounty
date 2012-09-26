@@ -1,13 +1,13 @@
 <?php
 
-/*
+/**
  * @file
  * Implementation of the administration interface for the module.
  */
 
 /**
- * Creates the settings form for campaign monitor. It's located under the
- * general tab.
+ * Creates the Campaign Monitor settings form. This is located under the general
+ * tab.
  *
  * @return array $form
  */
@@ -15,15 +15,15 @@ function campaignmonitor_admin_settings_general() {
   // Get account details.
   $account = variable_get('campaignmonitor_account', array());
 
-  // Test if the library have been installed, if it have not be installed a error
-  // message will be shown.
+  // Test if the library has been installed. If it has not been installed an
+  // error message will be shown.
   $cm = CampaignMonitor::getConnector();
   $library_path = $cm->getLibraryPath();
 
   $form['campaignmonitor_account'] = array(
     '#type' => 'fieldset',
     '#title' => t('Account details'),
-    '#description' => t('Account information from Campaign Monitor. See !link for more information.', array('!link' => l(t('documentation'), 'http://www.campaignmonitor.com/api/required/'))),
+    '#description' => t('Enter your Campaign Monitor account information. See !link for more information.', array('!link' => l(t('the Campaign Monitor API documentation'), 'http://www.campaignmonitor.com/api/required/'))),
     '#collapsible' => empty($account) ? FALSE : TRUE,
     '#collapsed' => empty($account) ? FALSE : TRUE,
     '#tree' => TRUE,
@@ -58,7 +58,7 @@ function campaignmonitor_admin_settings_general() {
     $form['campaignmonitor_general']['cache_timeout'] = array(
       '#type' => 'textfield',
       '#title' => t('Cache timeout'),
-      '#description' => t('Cahce timeout in seconds for stats, subscribers and archive information.'),
+      '#description' => t('Cache timeout in seconds for stats, subscribers and archive information.'),
       '#size' => 4,
       '#default_value' => isset($defaults['cache_timeout']) ? $defaults['cache_timeout'] : '360',
     );
@@ -66,13 +66,13 @@ function campaignmonitor_admin_settings_general() {
     $form['campaignmonitor_general']['library_path'] = array(
       '#type' => 'textfield',
       '#title' => t('Library path'),
-      '#description' => t('Campign monitor library path.'),
+      '#description' => t('The installation path of the Campaign Monitor library, relative to the Drupal root.'),
       '#default_value' => $library_path ? $library_path : (isset($defaults['library_path']) ? $defaults['library_path'] : ''),
     );
 
     $form['campaignmonitor_general']['archive'] = array(
       '#type' => 'checkbox',
-      '#title' => t('Newletter archive'),
+      '#title' => t('Newsletter archive'),
       '#description' => t('Create a block with links to HTML versions of past campaigns.'),
       '#default_value' => isset($defaults['archive']) ? $defaults['archive'] : 0,
     );
@@ -80,22 +80,22 @@ function campaignmonitor_admin_settings_general() {
     $form['campaignmonitor_general']['logging'] = array(
       '#type' => 'checkbox',
       '#title' => t('Log errors'),
-      '#description' => t('Log communication error with the campaign monitor service, if any.'),
+      '#description' => t('Log communication errors with the Campaign Monitor service, if any.'),
       '#default_value' => isset($defaults['logging']) ? $defaults['logging'] : 0,
     );
 
     $form['campaignmonitor_general']['instructions'] = array(
       '#type' => 'textfield',
-      '#title' => t('Newsletters Instructions'),
-      '#description' => t('A message to display to the user instructing them on what to do to join a newsletter.'),
-      '#default_value' => isset($defaults['instructions']) ? $defaults['instructions'] : 'Select the news lists, that you want to subscribe to from campaign monitor.',
+      '#title' => t('Newsletter instructions'),
+      '#description' => t('This message will be displayed to the user when subscribing to newsletters.'),
+      '#default_value' => isset($defaults['instructions']) ? $defaults['instructions'] : t('Select the newsletters you want to subscribe to.'),
     );
 
     // Add cache clear button.
     $form['clear_cache'] = array(
       '#type' => 'fieldset',
       '#title' => t('Clear cached data'),
-      '#description' => t('This module uses cache to store information downloaded from campaign monitor. The information cached is lists datails, custom fields and more. To re-download the information, clear the cache.'),
+      '#description' => t('The information downloaded from Campaign Monitor is cached to speed up the website. The lists details, custom fields and other data may become outdated if these are changed at Campaign Monitor. Clear the cache to refresh this information.'),
     );
 
     $form['clear_cache']['clear'] = array(
@@ -113,8 +113,7 @@ function campaignmonitor_admin_settings_general() {
 }
 
 /**
- * Implements form validation function to test if the api keys entered are
- * valided.
+ * Form validation handler. Tests if the given API keys are valid.
  */
 function campaignmonitor_admin_settings_general_validate($form, &$form_state) {
   $cm = CampaignMonitor::getConnector($form_state['values']['campaignmonitor_account']['api_key'], $form_state['values']['campaignmonitor_account']['client_id']);
@@ -126,21 +125,18 @@ function campaignmonitor_admin_settings_general_validate($form, &$form_state) {
 }
 
 /**
- * Settings submit form handler, which takes care off rehasing the block table
- * to ensure that blocks are avaliable after campign monitor activation.
- *
- * @param array $form
- * @param array $form_state
+ * Form submit handler. Takes care of rehashing the block table to ensure that
+ * blocks are available after Campaign Monitor activation.
  */
 function campaignmonitor_admin_settings_general_submit($form, &$form_state) {
-  // If archive block have been selected, rehash the block cache.
+  // If archive block has been selected, rehash the block cache.
   if (isset($form_state['values']['campaignmonitor_general']['archive']) && $form_state['values']['campaignmonitor_general']['archive']) {
     _block_rehash();
   }
 }
 
 /**
- * Clear the caches used by campaign monitor.
+ * Clear the caches used by Campaign Monitor.
  */
 function campaignmonitor_clear_cache_submit($form, &$form_state) {
   CampaignMonitor::getConnector($form_state['values']['campaignmonitor_account']['api_key'], $form_state['values']['campaignmonitor_account']['client_id'])->clearCache();

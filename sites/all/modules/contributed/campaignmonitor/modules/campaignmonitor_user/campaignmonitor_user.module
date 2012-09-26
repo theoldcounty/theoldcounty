@@ -2,8 +2,8 @@
 
 /*
  * @file
- * Enable users to select which newsletter lists they want to subscribe to in a
- * tab on their profile page.
+ * Adds a tab to the profile page that enables users to select which newsletters
+ * they want to subscribe to.
  */
 
 /**
@@ -19,7 +19,7 @@ function campaignmonitor_user_permission() {
 }
 
 /**
- * Implementation of hook_menu().
+ * Implements hook_menu().
  */
 function campaignmonitor_user_menu() {
   $items = array();
@@ -83,7 +83,7 @@ function campaignmonitor_user_form() {
     $form['lists'] = array(
       '#type' => 'checkboxes',
       '#title' => t('News lists'),
-      '#description' => !empty($defaults['instructions']) ? t($defaults['instructions']) : t('Select the news lists, that you want to subscribe to from campaign monitor.'),
+      '#description' => !empty($defaults['instructions']) ? t($defaults['instructions']) : t('Select the news lists that you want to subscribe to.'),
       '#options' => $options,
       '#default_value' => $default,
     );
@@ -102,8 +102,8 @@ function campaignmonitor_user_form() {
 }
 
 /**
- * Submission form handler, were information about the selected list is
- * submitted to campaign monitor.
+ * Submission form handler. The information about the selected list will be
+ * submitted to Campaign Monitor.
  */
 function campaignmonitor_user_form_submit($form, &$form_state) {
   global $user;
@@ -112,14 +112,14 @@ function campaignmonitor_user_form_submit($form, &$form_state) {
   $cm = CampaignMonitor::getConnector();
   $lists_info = $cm->getLists();
 
-  // Loop through the lists
+  // Loop through the lists.
   foreach ($form_state['values']['lists'] as $list_id => $selected) {
     if ($selected) {
-      // If not subscribed, subscribe else do nothing. The subscribe state is
+      // If not subscribed, subscribe, else do nothing. The subscribe state is
       // already in the cache, so it cheaper to check then re-subscribe.
       if (!$cm->isSubscribed($list_id, $user->mail)) {
         if (!$cm->subscribe($list_id, $user->mail, $user->name)) {
-          form_set_error('', t('You were not subscribed to the list, please try again.'));
+          form_set_error('', t('You were not subscribed to the list. Please try again later.'));
           $form_state['redirect'] = FALSE;
           return FALSE;
         }
@@ -130,7 +130,7 @@ function campaignmonitor_user_form_submit($form, &$form_state) {
       // Maybe this is an unsubscribe.
       if ($cm->isSubscribed($list_id, $user->mail)) {
         if (!$cm->unsubscribe($list_id, $user->mail)) {
-          form_set_error('', t('You were not unsubscribed from the list(s), please try again.'));
+          form_set_error('', t('You were not unsubscribed from the list(s). Please try again later.'));
           $form_state['redirect'] = FALSE;
           return FALSE;
         }
@@ -157,7 +157,7 @@ function campaignmonitor_user_form_campaignmonitor_admin_settings_list_edit_alte
 /**
  * Implements hook_form_FORM_ID_alter().
  *
- * Adds the option to synchronize subscriptions with user updates in the general
+ * Adds the option to synchronize subscriptions with user updates to the general
  * settings form.
  */
 function campaignmonitor_form_campaignmonitor_admin_settings_general_alter(&$form, &$form_state, $form_id) {
@@ -166,7 +166,7 @@ function campaignmonitor_form_campaignmonitor_admin_settings_general_alter(&$for
     '#type' => 'checkbox',
     '#title' => t('Synchronize e-mail address when updating user account.'),
     '#default_value' => isset($defaults['synchronize']) ? $defaults['synchronize'] : 0,
-    '#description' => t('If checked, user e-mail adresse will be synchronized when users update their account.'),
+    '#description' => t('If checked, user e-mail adresses will be synchronized when users update their account.'),
   );
 }
 
@@ -174,14 +174,15 @@ function campaignmonitor_form_campaignmonitor_admin_settings_general_alter(&$for
  * Implements hook_user_update().
  *
  * Makes sure that user e-mail addresses are synchronized with Campaign Monitor
- * when user accounts are updated, if selected in the administration interface.
+ * when user accounts are updated, if this option has been enabledin the
+ * administration interface.
  */
 function campaignmonitor_user_update(&$edit, $account, $category) {
   // In $edit['mail'] we have the entered e-mail address, and in
   // $account->original->mail the original one before editing the account. If
   // they are equal, we do nothing.
   if (isset($edit['mail']) && $edit['mail'] != $account->original->mail && $category == 'account') {
-    // Get Campaign Monitor settings and check if e-mail address should be
+    // Get Campaign Monitor settings and check if the e-mail address should be
     // synchronized.
     $settings = variable_get('campaignmonitor_general', array());
     if (isset($settings['synchronize']) && $settings['synchronize']) {
@@ -196,10 +197,10 @@ function campaignmonitor_user_update(&$edit, $account, $category) {
           // subscribed with the new e-mail.
           if ($cm->isSubscribed($list_id, $account->original->mail) && !$cm->isSubscribed($list_id, $edit['mail'])) {
             if ($cm->updateSubscriberEmail($list_id, $account->original->mail, $edit['mail'])) {
-              drupal_set_message(t('You e-mail adress have been updated for the "@list" list.', array('@list' => $list['name'])), 'status');
+              drupal_set_message(t('Your e-mail adress has been updated for the "@list" list.', array('@list' => $list['name'])), 'status');
             }
             else {
-              drupal_set_message(t('You e-mail adress have not been updated for the "@list" list.', array('@list' => $list['name'])), 'error');
+              drupal_set_message(t('Your e-mail adress has not been updated for the "@list" list.', array('@list' => $list['name'])), 'error');
             }
           }
         }

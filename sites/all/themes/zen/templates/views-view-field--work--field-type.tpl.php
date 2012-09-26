@@ -19,12 +19,15 @@
   * the view is modified.
   */
 ?>
-<?php 
-	$fieldType = $row->_field_data['nid']['entity']->field_type['und'];
-
-    foreach($fieldType as $key => $value )
-    {
-       $tag = get_tag_name($value['tid']);
-	   echo '<div class="tags">'.$tag.'</div>';
-    }
+<?php
+	if(array_key_exists('und', $row->_field_data['nid']['entity']->field_type)){
+		$fieldType = $row->_field_data['nid']['entity']->field_type['und'];
+		if($fieldType){
+			foreach($fieldType as $key => $value )
+			{
+			   $tag = get_tag_name($value['tid']);
+			   echo '<div class="tags">'.$tag.'</div>';
+			}
+		}
+	}
 ?>

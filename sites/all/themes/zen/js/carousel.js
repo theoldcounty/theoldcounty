@@ -96,7 +96,9 @@
 										var numItemsBack = data.length;
 
 										jQuery.each(data, function(key, value) {
-											//////console.log(key + ': ' + value);
+											//console.log(key + ': ' + value);
+
+											//console.log("value", value);
 
 											//var nid = value.nid;
 											//var title = value.title;
@@ -155,6 +157,10 @@
 											var title = value.title;
 											var tags = value.tags;
 											var subhead = value.subhead;
+											if(subhead == null){
+												subhead = '';
+											}
+
 											var path = value.path;
 
 											var tagHtml = value.tags;
@@ -190,7 +196,9 @@
 													}
 													break;
 											}
-											stripeText= 'New Project';
+
+
+											var stripBanner = '';
 
 											if(stripeText){
 												var first = stripeText.substr(0,1);
@@ -212,15 +220,27 @@
 												//console.log("stripeText", stripeText);
 												//console.log("charCount", charCount);
 
-												var stripBanner = '';
+
 												if(!isOld){
 														stripBanner = '<div id="stripeWrapper" class="'+bannerType+'"><div class="stripeImg"></div><div class="stripeText">'+stripeText+'</div></div>';
 												}
 											}
 
-											var hiddenData = '<div class="hiddenPane"><div class="corner"></div><div class="title"><a href="'+path+'">'+title+'</a></div><div class="subhead">'+subhead+'</div><div class="tags">'+tagHtml+'</div><div class="body">'+body+'</div><div class="clickable"></div></div>';
+											var displayControl = '';
+											var revealPane = '';
+											var imgCover = '<img src="'+value.imgSrc+'">';
+											if(!value.imgSrc){
+												imgCover = '';
+												displayControl = 'display:block!important;';
+											}
+											else{
+												revealPane = '<div class="revealedPane">'+stripBanner+imgCover+'</div>';
+											}
 
-											var rowTemplate = '<div class="views-row views-row-'+vid+' '+thumbsize+'"><div class="revealedPane">'+stripBanner+'<img src="'+value.imgSrc+'"></div>'+hiddenData+'</div>';
+											var hiddenData = '<div class="hiddenPane" style="'+displayControl+'"><div class="corner"></div><div class="title"><a href="'+path+'">'+title+'</a></div><div class="subhead">'+subhead+'</div><div class="tags">'+tagHtml+'</div><div class="body">'+body+'</div><div class="clickable"></div></div>';
+
+
+											var rowTemplate = '<div class="views-row views-row-'+vid+' '+thumbsize+'">'+revealPane+hiddenData+'</div>';
 											itemTemplate += wrapStart+''+rowTemplate+''+wrapEnd;
 
 										});

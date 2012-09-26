@@ -106,7 +106,11 @@
 		$imgData = $node->field_feature_image;
 		$imgUri = $imgData['und']['0']['uri'];
 
-		$imgSrc = image_style_url($thumbsize, $imgUri);
+		$imgSrc = null;
+
+		if($imgUri){
+			$imgSrc = image_style_url($thumbsize, $imgUri);
+		}
 
 		$body = $node->body['und']['0']['value'];
 

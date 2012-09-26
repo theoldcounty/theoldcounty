@@ -106,6 +106,11 @@ function zen_breadcrumb($variables) {
 function zen_preprocess_html(&$variables, $hook) {
   // Add variables and paths needed for HTML5 and responsive support.
   $variables['base_path'] = base_path();
+
+	global $base_url;
+	drupal_add_js(array( 'citris' => array( 'baseUrl' => $base_url, ), ), 'setting');
+	drupal_add_js(array( 'citris' => array( 'basePath' => base_path(), ), ), 'setting');
+
   $variables['path_to_zen'] = drupal_get_path('theme', 'zen');
   $html5_respond_meta = theme_get_setting('zen_html5_respond_meta');
   $variables['add_respond_js']          = in_array('respond', $html5_respond_meta);

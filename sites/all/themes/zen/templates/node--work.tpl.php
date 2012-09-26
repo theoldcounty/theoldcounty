@@ -93,10 +93,12 @@ global $base_url;
 		$fieldGrid = field_get_items('node', $node, 'field_grid_layout');
 
 		$fieldType = field_get_items('node', $node, 'field_type');
-		foreach($fieldType as $key => $value )
-		{
-		   $tag = get_tag_name($value['tid']);
-		   echo '<div class="tags">'.$tag.'</div>';
+		if($fieldType){
+			foreach($fieldType as $key => $value )
+			{
+			   $tag = get_tag_name($value['tid']);
+			   echo '<div class="tags">'.$tag.'</div>';
+			}
 		}
 
 		print render($content['field_sub_header']);
