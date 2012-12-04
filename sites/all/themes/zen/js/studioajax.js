@@ -172,7 +172,7 @@ var studioMore = {
 															}
 
 
-															console.log("value.imgSrc", value.imgSrc);
+															//console.log("value.imgSrc", value.imgSrc);
 
 															var displayControl = '';
 															var revealPane = '';
@@ -226,7 +226,7 @@ var studioMore = {
 															studioMore.runlow = true;
 														}
 
-														jQuery('.view-id-studio_carousel .view-content').append(itemTemplate); //Set output element html
+														jQuery('.view-id-studio_carousel .view-content').html(itemTemplate); //Set output element html
 														studioMore.next = start + studioMore.limit+1;
 													}
 													else

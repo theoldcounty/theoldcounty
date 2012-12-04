@@ -195,14 +195,15 @@ footer{
 
 .nwwrapper input[type="text"] {
 	height: 63px;
-	width: 100%;
+	width: 296px;
 	border: 1px solid black;
 	font-size: 24px;
 	padding: 10px;
 	font-family: 'Arial';
 	font-style: italic;
 	color: #8F8C85;
-	padding-left: 22px;
+	padding-left: 13px;
+	float: right;
 }
 
 .nwwrapper input[type="submit"] {

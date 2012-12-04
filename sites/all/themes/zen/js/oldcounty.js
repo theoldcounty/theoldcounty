@@ -1,6 +1,15 @@
 jQuery(document).ready(function() {
    // put all your jQuery goodness in here.
 
+	/*
+	var ua = navigator.userAgent;
+	var isiPad = /iPad/i.test(ua) || /iPhone OS 3_1_2/i.test(ua) || /iPhone OS 3_2_2/i.test(ua);
+	alert(isiPad);
+	if(isiPad){
+		jQuery('html').addClass("ipad");
+		alert("isipad");
+	}*/
+
 	jQuery('.clickable').live("click", function(event){
 		event.preventDefault();
 		var contentLink = jQuery(this).parent().find('.title a').attr('href');

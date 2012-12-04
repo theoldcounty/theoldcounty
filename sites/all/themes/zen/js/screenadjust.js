@@ -15,7 +15,7 @@
 
 									var homegrowncarouselnumber = null;
 
-
+									//alert(documentWidh);
 									//if iMac
 									if(documentWidh >= "1291"){
 										////console.log("set to imac mode2");
@@ -25,7 +25,7 @@
 									}
 
 									//if standard
-									if(documentWidh >= "1035" && documentWidh < "1291"){
+									if(documentWidh >= "1024" && documentWidh < "1291"){
 										////console.log("set to standard mode");
 										mode = "standard";
 										jQuery('#godPane .wrapper').css("width", "1035px");
@@ -33,7 +33,7 @@
 									}
 
 									//if mobile
-									if(documentWidh < "1035"){
+									if(documentWidh < "1024"){
 										////console.log("set to mobile mode");
 										mode = "mobile";
 										jQuery('#godPane .wrapper').css("width", "360px");
@@ -163,7 +163,6 @@
 
 jQuery(document).ready(function() {
    // put all your jQuery goodness in here.
-
 
 			//if home page hide the 5th block initially
 			jQuery('.view-display-id-home_news_block .view-content .views-row').eq(4).hide();
